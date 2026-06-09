@@ -199,6 +199,7 @@
 /* Принудительно скачиваем красивый журнальный шрифт из Google Fonts */
 @import url('https://googleapis.com');
 
+
 /* Внедряем шрифт Playfair Display во все премиальные заголовки */
 .font-serif, h1, h2, h3 {
   font-family: 'Playfair Display', Georgia, serif !important;
