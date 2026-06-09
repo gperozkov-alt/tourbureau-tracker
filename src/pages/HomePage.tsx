@@ -78,7 +78,7 @@ export default function HomePage() {
         </div>
       </nav>
       
-      {/* Головна заставка з машиною */}
+      {/* Главная заставка с машиной */}
       <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
@@ -119,7 +119,7 @@ export default function HomePage() {
           <div className="max-w-2xl">
             <h2 className="text-4xl font-serif font-bold mb-4 tracking-tight text-white">Наші популярні напрямки</h2>
             <p className="text-white/60 text-lg leading-relaxed">
-              Обирайте тур, який відповідає вашому настрою та бюджету. Кожна подорож — це нова історія.
+              Обирайте тур, який відповідає вашому настрою та бюджету. Кожна подорож — це nova історія.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -181,7 +181,7 @@ export default function HomePage() {
                     <Clock className="w-3.5 h-3.5 text-orange-500" />
                     <span>{tour.duration}</span>
                   </div>
-                  <div className="flex items-center gap-1 text-amber-500">
+                  <div className="flex items-center gap-1 text-amber-400">
                     <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
                     <span className="font-bold text-white/90 text-sm pl-0.5">{tour.rating}</span>
                   </div>
@@ -192,7 +192,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Твій красивий блок переваг з човном */}
+      {/* Твой красивый блок преимуществ с лодкой из скриншота */}
       <section id="about" className="bg-neutral-900/20 border-t border-b border-white/5 py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
@@ -208,4 +208,3 @@ export default function HomePage() {
               Чому обирають саме <span className="text-orange-500 italic">нас</span> для своїх пригод?
             </h2>
             
-            <div className="space-y-6">
