@@ -77,9 +77,9 @@ export default function HomePage() {
         </div>
       </nav>
       
-      {/* Твоя заставка на весь экран */}
-      <section style={{ position: 'relative', height: '60vh', flex: '1', display: 'flex', itemsCenter: 'center', justifyContent: 'center', backgroundImage: 'url("https://unsplash.com")', bgSize: 'cover', bgPosition: 'center', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.5)', width: '100%', height: '100%' }} />
+      {/* Заставка */}
+      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("https://unsplash.com")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.5)' }} />
         <div style={{ position: 'relative', zIndex: '10', textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
           <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '20px' }}>
             Відкрий світ разом з <span style={{ color: '#f97316', fontStyle: 'italic' }}>TourBureau</span>
@@ -101,7 +101,7 @@ export default function HomePage() {
       </section>
 
       {/* Каталог */}
-      <section style={{ py: '60px', maxWidth: '1200px', margin: '60px auto', padding: '0 20px' }}>
+      <section style={{ maxWidth: '1200px', margin: '60px auto', padding: '0 20px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px', flexWrap: 'wrap', gap: '20px' }}>
           <div>
             <h2 style={{ fontSize: '32px', margin: '0 0 10px 0', color: '#f97316' }}>Наші популярні напрямки</h2>
@@ -125,12 +125,12 @@ export default function HomePage() {
             <a key={tour.id} href={`/tour/${tour.id}`} style={{ textDecoration: 'none', color: 'white' }}>
               <div style={{ background: '#262626', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '20px', padding: '15px', height: '100%' }}>
                 <div style={{ position: 'relative', height: '200px', borderRadius: '15px', overflow: 'hidden', marginBottom: '15px' }}>
-                  <img src={tour.imageUrl} alt={tour.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={tour.imageUrl} alt={tour.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                   <span style={{ position: 'absolute', top: '10px', left: '10px', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '8px', fontSize: '10px' }}>{tour.category}</span>
                   <span style={{ position: 'absolute', bottom: '10px', right: '10px', background: '#171717', color: '#f97316', padding: '6px 12px', borderRadius: '10px', fontWeight: 'bold' }}>${tour.price}</span>
                 </div>
-                <span style={{ color: '#f97316', fontSize: '10px', fontWeight: 'bold', trackingWide: 'uppercase' }}>{tour.location}</span>
-                <h3 style={{ fontSize: '20px', margin: '5px 0 10px 0' }}>{tour.title}</h3>
+                <span style={{ color: '#f97316', fontSize: '10px', fontWeight: 'bold', textTransform: 'uppercase' }}>{tour.location}</span>
+                <h3 style={{ fontSize: '20px', margin: '5px 0 10px 0', color: 'white' }}>{tour.title}</h3>
                 <p style={{ margin: '0', fontSize: '12px', color: '#aaa' }}>{tour.duration} | {tour.rating} ★</p>
               </div>
             </a>
