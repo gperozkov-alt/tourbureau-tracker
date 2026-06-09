@@ -3,7 +3,6 @@ import { useParams, Link } from '@tanstack/react-router';
 import { Button, Badge, Input, Textarea, Card } from '@blinkdotnew/ui';
 import { MapPin, Clock, Star, Calendar, Users, CheckCircle2, ArrowLeft, Send } from 'lucide-react';
 
-// Готовая база данных туров прямо в коде, чтобы сайт работал без платной базы Blink
 const TOURS_DATA: Record<string, any> = {
   "1": {
     title: "Альпійська казка",
@@ -32,13 +31,12 @@ const TOURS_DATA: Record<string, any> = {
     duration: "5 днів",
     rating: "4.7",
     imageUrl: "https://unsplash.com",
-    description: "Пориньте в атмосферу Вічного міста. Професійні гіди проведуть вас таємними стежками Колізею, Ватикану та Римського Форуму. Ви дізнаєтеся історію великої імперії, скуштуєте справжню італійську пасту та піцу в автентичних траторіях Двору.",
+    description: "Пориньте в атмосферу Вічного міста. Професійні гіди провели вас таємними стежками Колізею, Ватикану та Римського Форуму. Ви дізнаєтеся історію великої імперії, скуштуєте справжню італійську пасту та піцу в автентичних траторіях Двору.",
     category: "Місто"
   }
 };
 
 export default function TourDetailsPage() {
-  // На випадок якщо роутер не передав ID, візьмемо перший тур як базовий для демонстрації в дипломі
   const { id } = useParams({ strict: false }) as any;
   const tourId = id || "1"; 
   const tour = TOURS_DATA[tourId] || TOURS_DATA["1"];
@@ -49,7 +47,7 @@ export default function TourDetailsPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email) {
-      alert('Будь ласка, заповніть обов’язкові fields (ім’я та email).');
+      alert('Будь ласка, заповніть обов’язкові поля (ім’я та email).');
       return;
     }
     setIsSubmitted(true);
@@ -58,7 +56,6 @@ export default function TourDetailsPage() {
 
   return (
     <div className="min-h-screen bg-neutral-900 text-white font-sans selection:bg-orange-500">
-      {/* Простий навбар */}
       <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center border-b border-white/10">
         <Link to="/" className="text-2xl font-bold tracking-wider text-orange-500 font-serif">TourBureau</Link>
         <div className="flex gap-6 text-sm font-medium text-white/80">
@@ -67,7 +64,6 @@ export default function TourDetailsPage() {
         </div>
       </nav>
 
-      {/* Hero Header */}
       <section className="relative h-[55vh] overflow-hidden">
         <img 
           src={tour.imageUrl} 
@@ -110,7 +106,6 @@ export default function TourDetailsPage() {
         </div>
       </section>
 
-      {/* Content Section */}
       <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-10">
           <div className="space-y-4">
@@ -133,7 +128,6 @@ export default function TourDetailsPage() {
             </div>
           </div>
 
-          {/* Відгуки студентський блок для диплому */}
           <div className="space-y-4">
             <h2 className="text-2xl font-serif font-bold border-b border-white/10 pb-3 text-orange-500">Відгуки мандрівників</h2>
             <div className="space-y-3">
@@ -174,11 +168,16 @@ export default function TourDetailsPage() {
           </div>
         </div>
 
-        {/* Booking Inquiry Form */}
         <div id="booking-form" className="lg:col-span-1">
           <Card className="p-6 bg-neutral-800 border-white/10 rounded-[2rem] shadow-xl sticky top-24">
-            <h3 className="text-xl font-serif font-bold mb-4 text-orange-500">Швидке бронювання</h3>
+            <h3 className="text-xl font-serif font-bold mb-4 text-orange-500">Швидке尋бронювання</h3>
             
             {isSubmitted ? (
               <div className="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-center space-y-2">
                 <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto" />
+                <p className="font-bold text-sm text-emerald-400">Запит успішно надіслано!</p>
+                <p className="text-xs text-white/60">Наш менеджер зв’яжеться з вами найближчим часом для підтвердження місць.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-1">
