@@ -8,7 +8,7 @@ const TOURS_STATIC = [
     price: 1200,
     duration: "7 днів",
     rating: "4.9",
-    imageUrl: "https://googleusercontent.com",
+    imageUrl: "https://picsum.photos",
     category: "Гори"
   },
   {
@@ -18,7 +18,7 @@ const TOURS_STATIC = [
     price: 1500,
     duration: "10 днів",
     rating: "4.8",
-    imageUrl: "https://googleusercontent.com",
+    imageUrl: "https://picsum.photos",
     category: "Пляж"
   },
   {
@@ -28,7 +28,7 @@ const TOURS_STATIC = [
     price: 850,
     duration: "5 днів",
     rating: "4.7",
-    imageUrl: "https://googleusercontent.com",
+    imageUrl: "https://picsum.photos",
     category: "Місто"
   },
   {
@@ -38,7 +38,7 @@ const TOURS_STATIC = [
     price: 2100,
     duration: "8 днів",
     rating: "5.0",
-    imageUrl: "https://googleusercontent.com",
+    imageUrl: "https://picsum.photos",
     category: "Природа"
   },
   {
@@ -48,7 +48,7 @@ const TOURS_STATIC = [
     price: 1800,
     duration: "6 днів",
     rating: "4.9",
-    imageUrl: "https://googleusercontent.com",
+    imageUrl: "https://picsum.photos",
     category: "Сафарі"
   }
 ];
@@ -77,17 +77,17 @@ export default function HomePage() {
         </div>
       </nav>
       
-      {/* Заставка з Google картинок */}
-      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("https://googleusercontent.com")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.5)' }} />
+      {/* Твоя крутая заставка с фургончиком */}
+      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("https://tripmydream.cc/travelhub/blog/blog/15/46/block_1546.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.4)' }} />
         <div style={{ position: 'relative', zIndex: '10', textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
-          <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '20px' }}>
+          <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '20px', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
             Відкрий світ разом з <span style={{ color: '#f97316', fontStyle: 'italic' }}>TourBureau</span>
           </h1>
-          <p style={{ fontSize: '18px', color: '#ccc', marginBottom: '30px' }}>
+          <p style={{ fontSize: '18px', color: '#eee', marginBottom: '30px', textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
             Ми створюємо незабутні спогади, поєднуючи комфорт та справжні пригоди.
           </p>
-          <div style={{ background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '15px', display: 'flex', gap: '10px', border: '1px solid rgba(255,255,255,0.2)' }}>
+          <div style={{ background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '15px', display: 'flex', gap: '10px', border: '1px solid rgba(255,255,255,0.2)', backdropBlur: '5px' }}>
             <input 
               type="text" 
               placeholder="Куди ви хочете поїхати?" 
@@ -95,7 +95,7 @@ export default function HomePage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button style={{ background: '#f97316', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '10px', fontWeight: 'bold' }}>Знайти пригоду</button>
+            <button style={{ background: '#f97316', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer' }}>Знайти пригоду</button>
           </div>
         </div>
       </section>
