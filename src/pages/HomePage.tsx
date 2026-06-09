@@ -8,7 +8,7 @@ const TOURS_STATIC = [
     price: 1200,
     duration: "7 днів",
     rating: "4.9",
-    imageUrl: "https://picsum.photos",
+    imageUrl: "https://unsplash.com",
     category: "Гори"
   },
   {
@@ -77,17 +77,17 @@ export default function HomePage() {
         </div>
       </nav>
       
-      {/* Твоя крутая заставка с фургончиком */}
-      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("https://tripmydream.cc/travelhub/blog/blog/15/46/block_1546.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      {/* Заставка с фургончиком */}
+      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("https://tripmydream.cc")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.4)' }} />
         <div style={{ position: 'relative', zIndex: '10', textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
           <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '20px', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
             Відкрий світ разом з <span style={{ color: '#f97316', fontStyle: 'italic' }}>TourBureau</span>
           </h1>
-          <p style={{ fontSize: '18px', color: '#eee', marginBottom: '30px', textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
+          <p style={{ fontSize: '18px', color: '#ccc', marginBottom: '30px', textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
             Ми створюємо незабутні спогади, поєднуючи комфорт та справжні пригоди.
           </p>
-          <div style={{ background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '15px', display: 'flex', gap: '10px', border: '1px solid rgba(255,255,255,0.2)', backdropBlur: '5px' }}>
+          <div style={{ background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '15px', display: 'flex', gap: '10px', border: '1px solid rgba(255,255,255,0.2)' }}>
             <input 
               type="text" 
               placeholder="Куди ви хочете поїхати?" 
@@ -120,7 +120,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '30px' }}>
+        <div style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', display: 'grid', gap: '30px' }}>
           {filteredTours.map((tour: any) => (
             <a key={tour.id} href={`/tour/${tour.id}`} style={{ textDecoration: 'none', color: 'white' }}>
               <div style={{ background: '#262626', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '20px', padding: '15px', height: '100%' }}>
