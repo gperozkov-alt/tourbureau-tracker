@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Button, Badge, Input, Textarea, Card } from '@blinkdotnew/ui';
-import { MapPin, Clock, Star, Calendar, Users, CheckCircle2, ArrowLeft, Send } from 'lucide-react';
 
 const TOURS_DATA: Record<string, any> = {
   "1": {
@@ -36,7 +34,6 @@ const TOURS_DATA: Record<string, any> = {
 };
 
 export default function TourDetailsPage() {
-  // Безопасное извлечение ID через чистый JavaScript в обход ломающегося роутера
   let tourId = "1";
   if (typeof window !== 'undefined') {
     const parts = window.location.pathname.split('/');
@@ -47,7 +44,6 @@ export default function TourDetailsPage() {
   }
   
   const tour = TOURS_DATA[tourId] || TOURS_DATA["1"];
-
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -57,133 +53,71 @@ export default function TourDetailsPage() {
       alert('Будь ласка, заповніть обов’язкові поля (ім’я та email).');
       return;
     }
-    setIsSubmitted(true);
+    setIsSubmitted(false);
+    alert('Запит успішно надіслано! Ми зв’яжемося з вами найближчим часом.');
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
 
   return (
-    <div className="min-h-screen bg-neutral-900 text-white font-sans selection:bg-orange-500">
-      <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center border-b border-white/10">
-        <a href="/" className="text-2xl font-bold tracking-wider text-orange-500 font-serif">TourBureau</a>
-        <div className="flex gap-6 text-sm font-medium text-white/80">
-          <a href="/" className="hover:text-orange-500 transition-colors">Головна</a>
-          <a href="/" className="hover:text-orange-500 transition-colors">Про нас</a>
+    <div style={{ backgroundColor: '#171717', color: 'white', minHeight: 'screen', fontFamily: 'sans-serif', paddingBottom: '50px' }}>
+      <nav style={{ padding: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto' }}>
+        <a href="/" style={{ fontSize: '24px', fontWeight: 'bold', color: '#f97316', textDecoration: 'none' }}>TourBureau</a>
+        <div style={{ display: 'flex', gap: '20px' }}>
+          <a href="/" style={{ color: 'white', textDecoration: 'none' }}>Головна</a>
+          <a href="/" style={{ color: 'white', textDecoration: 'none' }}>Про нас</a>
         </div>
       </nav>
 
-      <section className="relative h-[55vh] overflow-hidden">
-        <img 
-          src={tour.imageUrl} 
-          alt={tour.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/40 to-transparent" />
-        
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-6">
-          <div className="space-y-3 text-white">
-            <a href="/" className="inline-flex items-center gap-2 text-white/60 hover:text-orange-500 transition-colors mb-2 text-sm group">
-              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-              <span>Назад до каталогу</span>
-            </a>
-            <div className="flex items-center gap-2 text-orange-500 font-bold text-xs uppercase tracking-widest">
-              <MapPin className="w-4 h-4" />
-              <span>{tour.location}</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight">{tour.title}</h1>
-            <div className="flex items-center gap-6 text-white/80 text-sm">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-orange-500" />
-                <span>{tour.duration}</span>
-              </div>
-              <div className="flex items-center gap-1 text-amber-400">
-                <Star className="w-4 h-4 fill-current" />
-                <span className="font-bold">{tour.rating}</span>
-              </div>
-              <Badge className="bg-orange-500/20 text-orange-400 border border-orange-500/30 rounded-full px-3">{tour.category}</Badge>
-            </div>
-          </div>
+      <div style={{ position: 'relative', height: '40vh', width: '100%' }}>
+        <img src={tour.imageUrl} alt={tour.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        <div style={{ position: 'absolute', bottom: '20px', left: '20px', background: 'rgba(0,0,0,0.6)', padding: '20px', borderRadius: '15px' }}>
+          <span style={{ color: '#f97316', fontSize: '12px', fontWeight: 'bold' }}>{tour.location}</span>
+          <h1 style={{ fontSize: '32px', margin: '5px 0' }}>{tour.title}</h1>
+          <p style={{ margin: '0', fontSize: '14px', color: '#ccc' }}>Тривалість: {tour.duration} | Рейтинг: {tour.rating} ★</p>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: '1200px', margin: '40px auto', padding: '0 20px', display: 'grid', gridTemplateColumns: '1fr', gap: '40px' }}>
+        <div style={{ background: 'rgba(255,255,255,0.05)', padding: '30px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <h2 style={{ color: '#f97316', fontSize: '24px', marginTop: '0' }}>Про цей тур</h2>
+          <p style={{ lineHeight: '1.6', color: '#ddd' }}>{tour.description}</p>
           
-          <div className="bg-neutral-800 border border-white/10 p-6 rounded-[2rem] shadow-2xl min-w-[260px] text-center backdrop-blur-md">
-            <p className="text-white/50 text-xs uppercase font-bold tracking-widest mb-1">Ціна туру</p>
-            <p className="text-4xl font-serif font-bold text-orange-500 mb-4">${tour.price}</p>
-            <Button size="lg" className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold transition-all" onClick={() => document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' })}>
-              Забронювати
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div className="lg:col-span-2 space-y-10">
-          <div className="space-y-4">
-            <h2 className="text-2xl font-serif font-bold border-b border-white/10 pb-3 text-orange-500">Про цей тур</h2>
-            <p className="text-md text-white/70 leading-relaxed">
-              {tour.description}
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4">
-              {[
-                { label: 'Група', val: 'до 12 осіб', icon: Users },
-                { label: 'Дата виїзду', val: 'Щотижня', icon: Calendar },
-                { label: 'Гід', val: 'Включено', icon: MapPin }
-              ].map((item, i) => (
-                <div key={i} className="flex flex-col gap-1 p-4 rounded-xl bg-white/5 border border-white/10">
-                  <item.icon className="w-5 h-5 text-orange-500" />
-                  <span className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1">{item.label}</span>
-                  <span className="font-bold text-sm">{item.val}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <h2 className="text-2xl font-serif font-bold border-b border-white/10 pb-3 text-orange-500">Відгуки мандрівників</h2>
-            <div className="space-y-3">
-              <div className="p-4 bg-white/5 rounded-xl border border-white/5">
-                <div className="flex justify-between mb-1 text-sm">
-                  <span className="font-bold">Максим Коваленко</span>
-                  <span className="text-amber-400">★★★★★</span>
-                </div>
-                <p className="text-xs text-white/60">Це була найкраща подорож у моєму житті! Організація на найвищому рівні, готелі супер, гід знав відповідь на будь-яке питання. Рекомендую!</p>
-              </div>
-              <div className="p-4 bg-white/5 rounded-xl border border-white/5">
-                <div className="flex justify-between mb-1 text-sm">
-                  <span className="font-bold">Олена Петренко</span>
-                  <span className="text-amber-400">★★★★★</span>
-                </div>
-                <p className="text-xs text-white/60">Все дуже сподобалося. Ціна повністю виправдовує якість. Дуже зручні автобуси та крута екскурсійна програма.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <h2 className="text-2xl font-serif font-bold border-b border-white/10 pb-3 text-orange-500">Що входить у вартість</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {[
-                'Проживання в преміум готелях 4-5*',
-                'Сніданки та обіди за програмою',
-                'Всі вхідні квитки та збори',
-                'Супровід професійного сертифікованого гіда',
-                'Повне медичне страхування',
-                'Комфортабельний трансфер протягом всього туру'
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500" />
-                  <span className="text-white/70 text-sm">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <h3 style={{ color: '#f97316', marginTop: '30px' }}>Що входить у вартість:</h3>
+          <ul style={{ color: '#ccc', lineHeight: '1.8' }}>
+            <li>Проживання в преміум готелях 4-5*</li>
+            <li>Сніданки та обіди за програмою</li>
+            <li>Всі вхідні квитки та збори</li>
+            <li>Супровід професійного сертифікованого гіда</li>
+            <li>Повне медичне страхування</li>
+            <li>Комфортабельний трансфер протягом всього туру</li>
+          </ul>
+          
+          <h3 style={{ color: '#f97316', marginTop: '30px' }}>Ціна туру: <span style={{ color: 'white', fontSize: '24px' }}>${tour.price}</span></h3>
         </div>
 
-        <div id="booking-form" className="lg:col-span-1">
-          <Card className="p-6 bg-neutral-800 border-white/10 rounded-[2rem] shadow-xl sticky top-24">
-            <h3 className="text-xl font-serif font-bold mb-4 text-orange-500">Швидке бронювання</h3>
-            
-            {isSubmitted ? (
-              <div className="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-center space-y-2">
-                <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto" />
-                <p className="font-bold text-sm text-emerald-400">Запит успішно надіслано!</p>
-                <p className="text-xs text-white/60">Наш менеджер зв’яжеться з вами найближчим часом для підтвердження місць.</p>
-              </div>
-            ) : (
+        <div style={{ background: '#262626', padding: '30px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <h3 style={{ color: '#f97316', marginTop: '0', fontSize: '20px' }}>Швидке бронювання</h3>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <div>
+              <label style={{ display: 'block', fontSize: '12px', color: '#aaa', marginBottom: '5px' }}>Ваше ім’я *</label>
+              <input type="text" placeholder="Іван Іванов" required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #404040', background: '#171717', color: 'white' }} value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
+            </div>
+            <div>
+              <label style={{ display: 'block', fontSize: '12px', color: '#aaa', marginBottom: '5px' }}>Email *</label>
+              <input type="email" placeholder="ivan@example.com" required style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #404040', background: '#171717', color: 'white' }} value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
+            </div>
+            <div>
+              <label style={{ display: 'block', fontSize: '12px', color: '#aaa', marginBottom: '5px' }}>Телефон</label>
+              <input type="tel" placeholder="+380 99 123 45 67" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #404040', background: '#171717', color: 'white' }} value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
+            </div>
+            <div>
+              <label style={{ display: 'block', fontSize: '12px', color: '#aaa', marginBottom: '5px' }}>Побажання</label>
+              <textarea placeholder="Побажання щодо дат або кількості місць" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #404040', background: '#171717', color: 'white', height: '60px', resize: 'none' }} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })}></textarea>
+            </div>
+            <button type="submit" style={{ width: '100%', padding: '12px', background: '#f97316', border: 'none', borderRadius: '8px', color: 'white', fontWeight: 'bold', cursor: 'pointer', transition: '0.2s' }}>Надіслати заявку</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }
