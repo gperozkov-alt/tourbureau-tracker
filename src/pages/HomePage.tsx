@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Badge, Button } from '@blinkdotnew/ui';
-import { MapPin, Clock, Star, Search, CheckCircle2 } from 'lucide-react';
 
-// Твоя оригинальная база данных на 5 туров с надежными картинками из интернета
 const TOURS_STATIC = [
   {
     id: "1",
@@ -70,66 +67,51 @@ export default function HomePage() {
   });
 
   return (
-    <div className="min-h-screen bg-neutral-900 text-white font-sans selection:bg-orange-500">
-      <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center border-b border-white/10">
-        <a href="/" className="text-2xl font-bold tracking-wider text-orange-500 font-serif">TourBureau</a>
-        <div className="flex gap-6 text-sm font-medium text-white/80">
-          <a href="/" className="hover:text-orange-500 transition-colors">Головна</a>
-          <a href="#about" className="hover:text-orange-500 transition-colors">Про нас</a>
+    <div style={{ backgroundColor: '#171717', color: 'white', minHeight: '100vh', fontFamily: 'sans-serif' }}>
+      {/* Навбар */}
+      <nav style={{ padding: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto' }}>
+        <a href="/" style={{ fontSize: '24px', fontWeight: 'bold', color: '#f97316', textDecoration: 'none' }}>TourBureau</a>
+        <div style={{ display: 'flex', gap: '20px' }}>
+          <a href="/" style={{ color: 'white', textDecoration: 'none' }}>Головна</a>
+          <a href="#about" style={{ color: 'white', textDecoration: 'none' }}>Про нас</a>
         </div>
       </nav>
       
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center z-0"
-          style={{ backgroundImage: 'url("https://unsplash.com")' }}
-        >
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]" />
-        </div>
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-4 leading-tight">
-            Відкрий світ разом з <span className="text-orange-500 italic">TourBureau</span>
+      {/* Твоя заставка на весь экран */}
+      <section style={{ position: 'relative', height: '60vh', flex: '1', display: 'flex', itemsCenter: 'center', justifyContent: 'center', backgroundImage: 'url("https://unsplash.com")', bgSize: 'cover', bgPosition: 'center', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.5)', width: '100%', height: '100%' }} />
+        <div style={{ position: 'relative', zIndex: '10', textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
+          <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '20px' }}>
+            Відкрий світ разом з <span style={{ color: '#f97316', fontStyle: 'italic' }}>TourBureau</span>
           </h1>
-          <p className="text-lg text-white/80 mb-8 font-medium max-w-2xl mx-auto">
+          <p style={{ fontSize: '18px', color: '#ccc', marginBottom: '30px' }}>
             Ми створюємо незабутні спогади, поєднуючи комфорт та справжні пригоди.
           </p>
-          
-          <div className="bg-white/10 backdrop-blur-md p-2 rounded-2xl flex flex-col md:flex-row gap-2 max-w-xl mx-auto border border-white/10">
-            <div className="flex-1 flex items-center gap-3 px-4 py-2 text-white">
-              <Search className="w-5 h-5 text-orange-500" />
-              <input 
-                type="text" 
-                placeholder="Куди ви хочете поїхати?" 
-                className="bg-transparent border-none outline-none w-full placeholder:text-white/40 text-white text-sm"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-3 font-bold">
-              Знайти пригоду
-            </Button>
+          <div style={{ background: 'rgba(255,255,255,0.1)', padding: '10px', borderRadius: '15px', display: 'flex', gap: '10px', border: '1px solid rgba(255,255,255,0.2)' }}>
+            <input 
+              type="text" 
+              placeholder="Куди ви хочете поїхати?" 
+              style={{ flex: '1', background: 'transparent', border: 'none', outline: 'none', color: 'white', padding: '10px' }}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button style={{ background: '#f97316', color: 'white', border: 'none', padding: '10px 20px', borderRadius: '10px', fontWeight: 'bold' }}>Знайти пригоду</button>
           </div>
         </div>
       </section>
 
-      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
-          <div className="max-w-xl">
-            <h2 className="text-3xl font-serif font-bold mb-2 text-orange-500">Наші популярні напрямки</h2>
-            <p className="text-white/60 text-sm">
-              Обирайте тур, який відповідає вашому настрою та бюджету. Кожна подорож — це нова історія.
-            </p>
+      {/* Каталог */}
+      <section style={{ py: '60px', maxWidth: '1200px', margin: '60px auto', padding: '0 20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px', flexWrap: 'wrap', gap: '20px' }}>
+          <div>
+            <h2 style={{ fontSize: '32px', margin: '0 0 10px 0', color: '#f97316' }}>Наші популярні напрямки</h2>
+            <p style={{ color: '#aaa', margin: '0' }}>Обирайте тур, який відповідає вашому настрою та бюджету.</p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
             {categories.map(cat => (
               <button 
                 key={cat}
-                className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${
-                  activeCategory === cat 
-                    ? 'bg-orange-500 border-orange-500 text-white' 
-                    : 'bg-transparent border-white/10 text-white/60 hover:border-white/30'
-                }`}
+                style={{ padding: '8px 16px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', background: activeCategory === cat ? '#f97316' : 'transparent', color: 'white', fontSize: '12px', fontWeight: 'bold' }}
                 onClick={() => setActiveCategory(cat)}
               >
                 {cat}
@@ -138,83 +120,23 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '30px' }}>
           {filteredTours.map((tour: any) => (
-            <a 
-              key={tour.id} 
-              href={`/tour/${tour.id}`} 
-              className="group block"
-            >
-              <Card className="overflow-hidden border border-white/5 bg-neutral-800/40 rounded-3xl h-full transition-transform hover:-translate-y-2 backdrop-blur-sm p-4">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4">
-                  <img 
-                    src={tour.imageUrl} 
-                    alt={tour.title}
-                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <Badge className="bg-black/40 backdrop-blur-md text-white border-white/10 px-2 py-0.5 text-[10px]">
-                      {tour.category}
-                    </Badge>
-                  </div>
-                  <div className="absolute bottom-3 right-3 bg-neutral-900/90 backdrop-blur-md px-3 py-1 rounded-xl border border-white/10">
-                    <p className="font-bold text-orange-500 text-md">${tour.price}</p>
-                  </div>
+            <a key={tour.id} href={`/tour/${tour.id}`} style={{ textDecoration: 'none', color: 'white' }}>
+              <div style={{ background: '#262626', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '20px', padding: '15px', height: '100%' }}>
+                <div style={{ position: 'relative', height: '200px', borderRadius: '15px', overflow: 'hidden', marginBottom: '15px' }}>
+                  <img src={tour.imageUrl} alt={tour.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <span style={{ position: 'absolute', top: '10px', left: '10px', background: 'rgba(0,0,0,0.6)', padding: '4px 8px', borderRadius: '8px', fontSize: '10px' }}>{tour.category}</span>
+                  <span style={{ position: 'absolute', bottom: '10px', right: '10px', background: '#171717', color: '#f97316', padding: '6px 12px', borderRadius: '10px', fontWeight: 'bold' }}>${tour.price}</span>
                 </div>
-                
-                <div className="space-y-2 px-1">
-                  <div className="flex items-center gap-1.5 text-orange-500">
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span className="text-[10px] font-bold tracking-wide uppercase">{tour.location}</span>
-                  </div>
-                  
-                  <h3 className="text-xl font-serif font-bold group-hover:text-orange-500 transition-colors text-white">
-                    {tour.title}
-                  </h3>
-                  
-                  <div className="flex items-center gap-4 text-white/50 text-xs pt-1">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-orange-500" />
-                      <span>{tour.duration}</span>
-                    </div>
-                    <div className="flex items-center gap-1 text-amber-400">
-                      <Star className="w-3.5 h-3.5 fill-current" />
-                      <span className="font-bold text-white">{tour.rating}</span>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+                <span style={{ color: '#f97316', fontSize: '10px', fontWeight: 'bold', trackingWide: 'uppercase' }}>{tour.location}</span>
+                <h3 style={{ fontSize: '20px', margin: '5px 0 10px 0' }}>{tour.title}</h3>
+                <p style={{ margin: '0', fontSize: '12px', color: '#aaa' }}>{tour.duration} | {tour.rating} ★</p>
+              </div>
             </a>
           ))}
         </div>
       </section>
-
-      <section id="about" className="bg-neutral-800/30 border-t border-b border-white/5 py-16">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative">
-            <img 
-              src="https://unsplash.com" 
-              alt="Adventure"
-              className="rounded-[2rem] shadow-2xl relative z-10 border border-white/10"
-            />
-          </div>
-          
-          <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight text-orange-500">Чому обирають саме TourBureau?</h2>
-            <p className="text-white/60 text-sm leading-relaxed">
-              Ми дбаємо про кожну деталь вашої подорожі, забезпечуючи maximalний рівень комфорту та безпеки, щоб ви могли повністю поринути у нові відкриття.
-            </p>
-            
-            <div className="space-y-3">
-              {[
-                { title: "Преміум житло", desc: "Проживання тільки в перевірених 4* та 5* готелях." },
-                { title: "Сертифіковані гіди", desc: "Екскурсії від професіоналів, закоханих у свою справу." },
-                { title: "Турбота 24/7", desc: "Наша підтримка завжди на зв'язку у будь-якій точці світу." }
-              ].map((item, i) => (
-                <div key={i} className="flex gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-sm text-white">{item.title}</h4>
-                    <p className="text-xs text-white/50">{item.desc}</p>
-                  </div>
-                </div>
+    </div>
+  );
+}
