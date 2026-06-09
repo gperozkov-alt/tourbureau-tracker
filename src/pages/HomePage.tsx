@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Card, Badge, Button } from '@blinkdotnew/ui';
 import { MapPin, Clock, Star, Search, CheckCircle2 } from 'lucide-react';
 
 const TOURS_STATIC = [
@@ -64,18 +63,17 @@ export default function HomePage() {
   const filteredTours = TOURS_STATIC.filter((tour: any) => {
     const matchesSearch = tour.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
                          tour.location.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = activeCategory === 'У─У' || tour.category === activeCategory;
+    const matchesCategory = activeCategory === 'Усі' || tour.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-primary/20">
-      {/* Подключаем красивый шрифт Playfair Display напрямую из Google Fonts бесплатно */}
+    <div style={{ backgroundColor: '#0a0a0a', color: '#ffffff', minHeight: '100vh', fontFamily: 'sans-serif' }}>
+      {/* Подключаем красивый шрифт Playfair Display напрямую из Google Fonts */}
       <link rel="preconnect" href="https://googleapis.com" />
       <link rel="preconnect" href="https://gstatic.com" crossOrigin="anonymous" />
       <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
       
-      {/* Применяем этот шрифт ко всем serif-элементам */}
       <style>{`
         .font-serif {
           font-family: 'Playfair Display', Georgia, serif !important;
@@ -83,134 +81,80 @@ export default function HomePage() {
       `}</style>
 
       {/* Навбар */}
-      <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center border-b border-border/40">
-        <a href="/" className="text-2xl font-bold tracking-wider text-primary font-serif">TourBureau</a>
-        <div className="flex gap-8 text-sm font-medium text-muted-foreground">
-          <a href="/" className="hover:text-primary transition-colors">Головна</a>
-          <a href="#about" className="hover:text-primary transition-colors">Про нас</a>
+      <nav style={{ padding: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto', alignItems: 'center' }}>
+        <a href="/" className="font-serif" style={{ fontSize: '24px', fontWeight: 'bold', color: '#f97316', textDecoration: 'none', trackingWider: '0.05em' }}>TourBureau</a>
+        <div style={{ display: 'flex', gap: '32px', fontSize: '14px' }}>
+          <a href="/" style={{ color: '#f97316', textDecoration: 'none', fontWeight: '500' }}>Головна</a>
+          <a href="#about" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontWeight: '500' }}>Про нас</a>
         </div>
       </nav>
       
-      {/* Hero Section */}
-      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center z-0"
-          style={{ backgroundImage: 'url("https://unsplash.com")' }}
-        >
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
-        </div>
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight tracking-tight">
-            Відкрий світ разом з <span className="text-primary italic">TourBureau</span>
+      {/* Заставка с фургончиком */}
+      <section style={{ position: 'relative', height: '65vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("https://unsplash.com")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.45)' }} />
+        <div style={{ position: 'relative', zIndex: '10', textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
+          <h1 className="font-serif" style={{ fontSize: '56px', fontWeight: 'bold', marginBottom: '20px', lineHeight: '1.1', textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
+            Відкрий світ разом з <span style={{ color: '#f97316', fontStyle: 'italic' }}>TourBureau</span>
           </h1>
-          <p className="text-xl text-white/90 mb-10 font-medium max-w-2xl mx-auto leading-relaxed">
+          <p style={{ fontSize: '20px', color: 'rgba(255,255,255,0.9)', marginBottom: '40px', fontWeight: 'normal' }}>
             Ми створюємо незабутні спогади, поєднуючи комфорт та справжні пригоди.
           </p>
-          
-          <div className="bg-white/10 backdrop-blur-md p-2 rounded-2xl flex flex-col md:flex-row gap-2 max-w-2xl mx-auto border border-white/20 shadow-2xl">
-            <div className="flex-1 flex items-center gap-3 px-4 py-2 text-white">
-              <Search className="w-5 h-5 opacity-70 text-white" />
+          <div style={{ background: 'rgba(255,255,255,0.08)', padding: '8px', borderRadius: '16px', display: 'flex', gap: '10px', border: '1px solid rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)' }}>
+            <div style={{ flex: '1', display: 'flex', alignItems: 'center', gap: '12px', paddingLeft: '12px' }}>
+              <Search style={{ width: '20px', height: '20px', color: '#f97316' }} />
               <input 
                 type="text" 
                 placeholder="Куди ви хочете поїхати?" 
-                className="bg-transparent border-none outline-none w-full placeholder:text-white/60 text-white text-sm"
+                style={{ width: '100%', background: 'transparent', border: 'none', outline: 'none', color: 'white', fontSize: '14px' }}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <Button size="lg" className="rounded-xl px-8 shadow-lg shadow-primary/20 font-bold bg-primary text-primary-foreground hover:opacity-90">
-              Знайти пригоду
-            </Button>
+            <button style={{ background: '#f97316', color: 'white', border: 'none', padding: '12px 28px', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '14px' }}>Знайти пригоду</button>
           </div>
         </div>
       </section>
 
-      {/* Catalog Grid */}
-      <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row justify-between lg:items-end mb-12 gap-6">
-          <div className="max-w-2xl">
-            <h2 className="text-4xl font-serif font-bold mb-4 tracking-tight">Наші популярні напрямки</h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              Обирайте тур, який відповідає вашому настрою та бюджету. Кожна подорож — це нова історія.
-            </p>
+      {/* Каталог туров */}
+      <section style={{ maxWidth: '1200px', margin: '80px auto', padding: '0 24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '48px', flexWrap: 'wrap', gap: '24px' }}>
+          <div>
+            <h2 className="font-serif" style={{ fontSize: '36px', margin: '0 0 12px 0', fontWeight: 'bold' }}>Наші популярні напрямки</h2>
+            <p style={{ color: 'rgba(255,255,255,0.6)', margin: '0', fontSize: '16px' }}>Обирайте тур, який відповідає вашому настрою та бюджету. Кожна подорож — це нова історія.</p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {categories.map(cat => (
-              <Badge 
+              <button 
                 key={cat}
-                variant={activeCategory === cat ? 'default' : 'outline'} 
-                className="px-5 py-2 cursor-pointer transition-all rounded-full text-xs font-bold"
+                style={{ padding: '8px 20px', borderRadius: '9999px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', background: activeCategory === cat ? '#f97316' : 'transparent', color: activeCategory === cat ? 'white' : 'rgba(255,255,255,0.6)', fontSize: '12px', fontWeight: 'bold', transition: '0.2s' }}
                 onClick={() => setActiveCategory(cat)}
               >
                 {cat}
-              </Badge>
+              </button>
             ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '32px' }}>
           {filteredTours.map((tour: any) => (
-            <a 
-              key={tour.id} 
-              href={`/tour/${tour.id}`} 
-              className="group block"
-            >
-              <Card className="overflow-hidden border-none shadow-none bg-transparent h-full transition-transform hover:-translate-y-2 duration-300">
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 shadow-md">
-                  <img 
-                    src={tour.imageUrl} 
-                    alt={tour.title}
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <Badge className="bg-white/20 backdrop-blur-md text-white border-white/30 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase">
-                      {tour.category}
-                    </Badge>
+            <a key={tour.id} href={`/tour/${tour.id}`} style={{ textDecoration: 'none', color: 'white' }}>
+              <div style={{ background: 'rgba(38,38,38,0.4)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '32px', padding: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', backdropFilter: 'blur(4px)' }}>
+                <div>
+                  <div style={{ position: 'relative', height: '220px', borderRadius: '24px', overflow: 'hidden', marginBottom: '20px' }}>
+                    <img src={tour.imageUrl} alt={tour.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.1)', padding: '4px 12px', borderRadius: '9999px', fontSize: '10px', fontWeight: 'bold', trackingWider: '0.05em', textTransform: 'uppercase' }}>{tour.category}</span>
+                    <span className="font-serif" style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(23,23,23,0.85)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.1)', color: '#f97316', padding: '6px 16px', borderRadius: '12px', fontWeight: 'bold', fontSize: '18px' }}>${tour.price}</span>
                   </div>
-                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl">
-                    <p className="font-bold text-primary text-lg font-serif">${tour.price}</p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#f97316', fontSize: '12px', fontWeight: 'bold', marginBottom: '8px' }}>
+                    <MapPin style={{ width: '14px', height: '14px' }} />
+                    <span style={{ textTransform: 'uppercase', trackingWider: '0.05em' }}>{tour.location}</span>
                   </div>
+                  <h3 className="font-serif" style={{ fontSize: '24px', margin: '0 0 16px 0', fontWeight: 'bold', lineHeight: '1.2' }}>{tour.title}</h3>
                 </div>
-                
-                <div className="space-y-3 px-2">
-                  <div className="flex items-center gap-2 text-primary">
-                    <MapPin className="w-4 h-4" />
-                    <span className="text-xs font-bold tracking-wider uppercase text-primary/90">{tour.location}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '24px', fontSize: '13px', color: 'rgba(255,255,255,0.5)', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Clock style={{ width: '14px', height: '14px', color: '#f97316' }} />
+                    <span>{tour.duration}</span>
                   </div>
-                  
-                  <h3 className="text-2xl font-serif font-bold group-hover:text-primary transition-colors tracking-tight leading-tight">
-                    {tour.title}
-                  </h3>
-                  
-                  <div className="flex items-center gap-6 text-muted-foreground text-sm pt-1">
-                    <div className="flex items-center gap-1.5">
-                      <Clock className="w-4 h-4" />
-                      <span>{tour.duration}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-amber-500">
-                      {/* Красивая золотая звездочка */}
-                      <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
-                      <span className="font-bold text-foreground pl-0.5">{tour.rating}</span>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section id="about" className="bg-primary/5 py-24 border-t border-b border-primary/10">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="aspect-square rounded-[3rem] overflow-hidden rotate-3 scale-95 opacity-50 absolute -top-4 -left-4 bg-primary/20 -z-10" />
-            <img 
-              src="https://unsplash.com" 
-              alt="Adventure"
-              className="rounded-[3rem] shadow-2xl relative z-10"
-            />
-          </div>
-          
-          <div className="space-y-8">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#fbbf24' }}>
+                    {/* Фирменная золотая закрашенная звездочка */}
