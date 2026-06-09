@@ -18,7 +18,7 @@ const TOURS_DATA: Record<string, any> = {
     duration: "10 днів",
     rating: "4.8",
     imageUrl: "https://unsplash.com",
-    description: "Екзотичний відпочинок на одному з найкрасивіших островів світу. Білосніжні та вулканічні пляжі, тропічні джунглі, стародавні індуїстські храми та унікальна культура Балі. У вартість включені спа-процедури, уроки серфінгу та захоплюючі екскурсії до водоспадів.",
+    description: "Екзотичний відпочинок на одному з найкрасивіших островів світу. Білосніжні та вулканічні пляжі, тропічні джунглі, стародавни індуїстські храми та унікальна культура Балі. У вартість включені спа-процедури, уроки серфінгу та захоплюючі екскурсії до водоспадів.",
     category: "Пляж"
   },
   "3": {
@@ -30,6 +30,26 @@ const TOURS_DATA: Record<string, any> = {
     imageUrl: "https://unsplash.com",
     description: "Пориньте в атмосферу Вічного міста. Професійні гіди проведуть вас таємними стежками Колізею, Ватикану та Римського Форуму. Ви дізнаєтеся історію великої імперії, скуштуєте справжню італійську пасту та піцу в автентичних траторіях Двору.",
     category: "Місто"
+  },
+  "4": {
+    title: "Магія Ісландії",
+    location: "Ісландія",
+    price: 2100,
+    duration: "8 днів",
+    rating: "5.0",
+    imageUrl: "https://unsplash.com",
+    description: "Подорож у країну льоду та вогню. Величні гейзери, гігантські водоспади, застигла вулканічна лава та неймовірні чорні пляжі Вік. Програма включає купання в геотермальному комплексі Блакитна Лагуна та вечірні виїзди для полювання за Північним сяйвом.",
+    category: "Природа"
+  },
+  "5": {
+    title: "Сафарі в Кенії",
+    location: "Кенія",
+    price: 1800,
+    duration: "6 днів",
+    rating: "4.9",
+    imageUrl: "https://unsplash.com",
+    description: "Справжня африканська пригода у національних парках Кенії. Поїздки на відкритих джипах на відстані витягнутої руки від левів, слонів, жирафів та леопардів. Неймовірна краса савани, ночівлі в комфортабельних еко-лоджах та знайомство з легендарним племенем Масаї.",
+    category: "Сафарі"
   }
 };
 
@@ -54,12 +74,12 @@ export default function TourDetailsPage() {
       return;
     }
     setIsSubmitted(false);
-    alert('Запит успішно надіслано! Ми зв’яжемося з вами найближчим часом.');
+    alert('Запит успешно надіслано! Ми зв’яжемося з вами найближчим часом.');
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
 
   return (
-    <div style={{ backgroundColor: '#171717', color: 'white', minHeight: 'screen', fontFamily: 'sans-serif', paddingBottom: '50px' }}>
+    <div style={{ backgroundColor: '#171717', color: 'white', minHeight: '100vh', fontFamily: 'sans-serif', paddingBottom: '50px' }}>
       <nav style={{ padding: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto' }}>
         <a href="/" style={{ fontSize: '24px', fontWeight: 'bold', color: '#f97316', textDecoration: 'none' }}>TourBureau</a>
         <div style={{ display: 'flex', gap: '20px' }}>
