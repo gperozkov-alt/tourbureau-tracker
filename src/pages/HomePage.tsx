@@ -28,7 +28,7 @@ const TOURS_STATIC = [
     price: 850,
     duration: "5 днів",
     rating: "4.7",
-    imageUrl: "https://picsum.photos",
+    imageUrl: "https://aws-tiqets-cdn.imgix.net/images/content/ae55c13761824ba5b6f3126bc1d7a561.jpg?auto=format,compress&fit=crop&h=260&q=40&w=390",
     category: "Місто"
   },
   {
