@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Badge, Button } from '@blinkdotnew/ui';
-import { MapPin, Clock, Star, Search, CheckCircle2 } from 'lucide-react';
+import { MapPin, Clock, Star, Search, CheckCircle2, Shield, Users, Compass } from 'lucide-react';
 
 const TOURS_STATIC = [
   {
@@ -70,6 +70,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-primary/20">
+      {/* Навбар */}
       <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center border-b border-border/40">
         <a href="/" className="text-2xl font-bold tracking-wider text-primary font-serif">TourBureau</a>
         <div className="flex gap-8 text-sm font-medium text-muted-foreground">
@@ -78,6 +79,7 @@ export default function HomePage() {
         </div>
       </nav>
       
+      {/* Hero Section */}
       <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
@@ -112,6 +114,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Catalog Grid */}
       <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row justify-between lg:items-end mb-12 gap-6">
           <div className="max-w-2xl">
@@ -185,24 +188,32 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Фирменный блок преимуществ из твоего скриншота */}
       <section id="about" className="bg-primary/5 py-24 border-t border-b border-primary/10">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
-            <div className="aspect-square rounded-[3rem] overflow-hidden rotate-3 scale-95 opacity-50 absolute -top-4 -left-4 bg-primary/20 -z-10" />
             <img 
-              src="https://unsplash.com" 
-              alt="Adventure"
-              className="rounded-[3rem] shadow-2xl relative z-10"
+              src="https://pixabay.com" 
+              alt="Пригоди"
+              className="rounded-[3rem] shadow-2xl relative z-10 border border-border/40"
             />
           </div>
           
           <div className="space-y-8">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight tracking-tight">Чому обирають саме <span className="text-primary italic">TourBureau</span>?</h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              Ми дбаємо про кожну деталь вашої подорожі, забезпечуючи максимальний рівень комфорту та безпеки, щоб ви могли повністю поринути у нові відкриття.
-            </p>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight tracking-tight">
+              Чому обирають саме <span className="text-primary italic">нас</span> для своїх пригод?
+            </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-6">
               {[
-                { title: "Преміум житло", desc: "Проживання тільки в перевірених 4* та 5* готелях." },
-                { title: "Сертифіковані гіди", desc: "Екскурсії від професіоналів, закоханих у свою справу." },
+                { 
+                  title: "Досвідчені гіди", 
+                  desc: "Наші професіонали знають кожен потаємний куточок вашого маршруту.", 
+                  icon: Compass 
+                },
+                { 
+                  title: "Гнучкість та комфорт", 
+                  desc: "Ми підлаштуємо кожен тур під ваші побажання та потреби.", 
+                  icon: Users 
+                },
+                { 
