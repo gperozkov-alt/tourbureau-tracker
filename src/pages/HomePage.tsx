@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Badge, Button } from '@blinkdotnew/ui';
 import { MapPin, Clock, Star, Search, CheckCircle2 } from 'lucide-react';
 
-// Локальная база данных туров, работающая автономно без серверов Blink
+// Твоя оригинальная база данных на 5 туров с надежными картинками из интернета
 const TOURS_STATIC = [
   {
     id: "1",
@@ -33,6 +33,26 @@ const TOURS_STATIC = [
     rating: "4.7",
     imageUrl: "https://unsplash.com",
     category: "Місто"
+  },
+  {
+    id: "4",
+    title: "Магія Ісландії",
+    location: "Ісландія",
+    price: 2100,
+    duration: "8 днів",
+    rating: "5.0",
+    imageUrl: "https://unsplash.com",
+    category: "Природа"
+  },
+  {
+    id: "5",
+    title: "Сафарі в Кенії",
+    location: "Кенія",
+    price: 1800,
+    duration: "6 днів",
+    rating: "4.9",
+    imageUrl: "https://unsplash.com",
+    category: "Сафарі"
   }
 ];
 
@@ -40,7 +60,7 @@ export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('Усі');
 
-  const categories = ['Усі', 'Гори', 'Пляж', 'Місто'];
+  const categories = ['Усі', 'Гори', 'Пляж', 'Місто', 'Природа', 'Сафарі'];
 
   const filteredTours = TOURS_STATIC.filter((tour: any) => {
     const matchesSearch = tour.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -51,7 +71,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-neutral-900 text-white font-sans selection:bg-orange-500">
-      {/* Навбар */}
       <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center border-b border-white/10">
         <a href="/" className="text-2xl font-bold tracking-wider text-orange-500 font-serif">TourBureau</a>
         <div className="flex gap-6 text-sm font-medium text-white/80">
@@ -60,7 +79,6 @@ export default function HomePage() {
         </div>
       </nav>
       
-      {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
@@ -95,7 +113,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Catalog Grid */}
       <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
           <div className="max-w-xl">
@@ -172,7 +189,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
       <section id="about" className="bg-neutral-800/30 border-t border-b border-white/5 py-16">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative">
@@ -186,7 +202,7 @@ export default function HomePage() {
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-serif font-bold leading-tight text-orange-500">Чому обирають саме TourBureau?</h2>
             <p className="text-white/60 text-sm leading-relaxed">
-              Ми дбаємо про кожну деталь вашої подорожі, забезпечуючи максимальний рівень комфорту та безпеки, щоб ви могли повністю поринути у нові відкриття.
+              Ми дбаємо про кожну деталь вашої подорожі, забезпечуючи maximalний рівень комфорту та безпеки, щоб ви могли повністю поринути у нові відкриття.
             </p>
             
             <div className="space-y-3">
@@ -202,11 +218,3 @@ export default function HomePage() {
                     <p className="text-xs text-white/50">{item.desc}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
