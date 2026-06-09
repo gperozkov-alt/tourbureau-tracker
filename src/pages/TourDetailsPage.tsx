@@ -186,3 +186,4 @@ export default function TourDetailsPage() {
                 <p className="text-xs text-white/60">Наш менеджер зв’яжеться з вами найближчим часом для підтвердження місць.</p>
               </div>
             ) : (
+}
