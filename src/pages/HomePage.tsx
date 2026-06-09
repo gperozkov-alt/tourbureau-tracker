@@ -8,7 +8,7 @@ const TOURS_STATIC = [
     price: 1200,
     duration: "7 днів",
     rating: "4.9",
-    imageUrl: "https://unsplash.com",
+    imageUrl: "https://googleusercontent.com",
     category: "Гори"
   },
   {
@@ -18,7 +18,7 @@ const TOURS_STATIC = [
     price: 1500,
     duration: "10 днів",
     rating: "4.8",
-    imageUrl: "https://unsplash.com",
+    imageUrl: "https://googleusercontent.com",
     category: "Пляж"
   },
   {
@@ -28,7 +28,7 @@ const TOURS_STATIC = [
     price: 850,
     duration: "5 днів",
     rating: "4.7",
-    imageUrl: "https://unsplash.com",
+    imageUrl: "https://googleusercontent.com",
     category: "Місто"
   },
   {
@@ -38,7 +38,7 @@ const TOURS_STATIC = [
     price: 2100,
     duration: "8 днів",
     rating: "5.0",
-    imageUrl: "https://unsplash.com",
+    imageUrl: "https://googleusercontent.com",
     category: "Природа"
   },
   {
@@ -48,7 +48,7 @@ const TOURS_STATIC = [
     price: 1800,
     duration: "6 днів",
     rating: "4.9",
-    imageUrl: "https://unsplash.com",
+    imageUrl: "https://googleusercontent.com",
     category: "Сафарі"
   }
 ];
@@ -77,8 +77,8 @@ export default function HomePage() {
         </div>
       </nav>
       
-      {/* Заставка */}
-      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("https://unsplash.com")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      {/* Заставка з Google картинок */}
+      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("https://googleusercontent.com")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.5)' }} />
         <div style={{ position: 'relative', zIndex: '10', textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
           <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '20px' }}>
