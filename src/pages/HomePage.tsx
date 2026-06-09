@@ -68,65 +68,69 @@ export default function HomePage() {
   });
 
   return (
-    <div style={{ backgroundColor: '#0a0a0a', color: '#ffffff', minHeight: '100vh', fontFamily: 'sans-serif' }}>
-      {/* Подключаем красивый шрифт Playfair Display напрямую из Google Fonts */}
-      <link rel="preconnect" href="https://googleapis.com" />
-      <link rel="preconnect" href="https://gstatic.com" crossOrigin="anonymous" />
-      <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
-      
-      <style>{`
-        .font-serif {
-          font-family: 'Playfair Display', Georgia, serif !important;
-        }
-      `}</style>
-
-      {/* Навбар */}
-      <nav style={{ padding: '24px', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto', alignItems: 'center' }}>
-        <a href="/" className="font-serif" style={{ fontSize: '24px', fontWeight: 'bold', color: '#f97316', textDecoration: 'none', trackingWider: '0.05em' }}>TourBureau</a>
-        <div style={{ display: 'flex', gap: '32px', fontSize: '14px' }}>
-          <a href="/" style={{ color: '#f97316', textDecoration: 'none', fontWeight: '500' }}>Головна</a>
-          <a href="#about" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none', fontWeight: '500' }}>Про нас</a>
+    <div className="min-h-screen bg-neutral-950 text-white font-sans antialiased selection:bg-orange-500/30">
+      {/* Шапка (Навбар) */}
+      <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center border-b border-white/5">
+        <a href="/" className="text-2xl font-bold tracking-wider text-orange-500 font-serif hover:opacity-90 transition-opacity">TourBureau</a>
+        <div className="flex gap-8 text-sm font-medium text-white/60">
+          <a href="/" className="hover:text-orange-500 transition-colors">Головна</a>
+          <a href="#about" className="hover:text-orange-500 transition-colors">Про нас</a>
         </div>
       </nav>
       
-      {/* Заставка с фургончиком */}
-      <section style={{ position: 'relative', height: '65vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("https://unsplash.com")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.45)' }} />
-        <div style={{ position: 'relative', zIndex: '10', textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
-          <h1 className="font-serif" style={{ fontSize: '56px', fontWeight: 'bold', marginBottom: '20px', lineHeight: '1.1', textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
-            Відкрий світ разом з <span style={{ color: '#f97316', fontStyle: 'italic' }}>TourBureau</span>
+      {/* Главная заставка с машиной */}
+      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{ backgroundImage: 'url("https://unsplash.com")' }}
+        >
+          <div className="absolute inset-0 bg-black/45 backdrop-blur-[1px]" />
+        </div>
+        
+        <div className="relative z-10 text-center px-4 max-w-4xl">
+          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-5 leading-tight tracking-tight">
+            Відкрий світ разом з <span className="text-orange-500 italic">TourBureau</span>
           </h1>
-          <p style={{ fontSize: '20px', color: 'rgba(255,255,255,0.9)', marginBottom: '40px', fontWeight: 'normal' }}>
+          <p className="text-xl text-white/80 mb-10 font-normal max-w-2xl mx-auto leading-relaxed">
             Ми створюємо незабутні спогади, поєднуючи комфорт та справжні пригоди.
           </p>
-          <div style={{ background: 'rgba(255,255,255,0.08)', padding: '8px', borderRadius: '16px', display: 'flex', gap: '10px', border: '1px solid rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)' }}>
-            <div style={{ flex: '1', display: 'flex', alignItems: 'center', gap: '12px', paddingLeft: '12px' }}>
-              <Search style={{ width: '20px', height: '20px', color: '#f97316' }} />
+          
+          <div className="bg-white/5 backdrop-blur-md p-2 rounded-2xl flex flex-col md:flex-row gap-2 max-w-2xl mx-auto border border-white/10 shadow-2xl">
+            <div className="flex-1 flex items-center gap-3 px-4 py-2 text-white">
+              <Search className="w-5 h-5 text-orange-500 shrink-0" />
               <input 
                 type="text" 
                 placeholder="Куди ви хочете поїхати?" 
-                style={{ width: '100%', background: 'transparent', border: 'none', outline: 'none', color: 'white', fontSize: '14px' }}
+                className="bg-transparent border-none outline-none w-full placeholder:text-white/40 text-white text-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <button style={{ background: '#f97316', color: 'white', border: 'none', padding: '12px 28px', borderRadius: '12px', fontWeight: 'bold', cursor: 'pointer', fontSize: '14px' }}>Знайти пригоду</button>
+            <button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-8 font-bold transition-all shadow-lg shadow-orange-500/10 py-3 text-sm">
+              Знайти пригоду
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Каталог туров */}
-      <section style={{ maxWidth: '1200px', margin: '80px auto', padding: '0 24px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '48px', flexWrap: 'wrap', gap: '24px' }}>
-          <div>
-            <h2 className="font-serif" style={{ fontSize: '36px', margin: '0 0 12px 0', fontWeight: 'bold' }}>Наші популярні напрямки</h2>
-            <p style={{ color: 'rgba(255,255,255,0.6)', margin: '0', fontSize: '16px' }}>Обирайте тур, який відповідає вашому настрою та бюджету. Кожна подорож — це нова історія.</p>
+      {/* Каталог */}
+      <section className="py-20 px-4 md:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row justify-between lg:items-end mb-12 gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl font-serif font-bold mb-4 tracking-tight text-white">Наші популярні напрямки</h2>
+            <p className="text-white/60 text-lg leading-relaxed">
+              Обирайте тур, який відповідає вашому настрою та бюджету. Кожна подорож — це нова історія.
+            </p>
           </div>
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <div className="flex flex-wrap gap-2">
             {categories.map(cat => (
               <button 
                 key={cat}
-                style={{ padding: '8px 20px', borderRadius: '9999px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', background: activeCategory === cat ? '#f97316' : 'transparent', color: activeCategory === cat ? 'white' : 'rgba(255,255,255,0.6)', fontSize: '12px', fontWeight: 'bold', transition: '0.2s' }}
+                className={`px-5 py-2 rounded-full text-xs font-bold transition-all border ${
+                  activeCategory === cat 
+                    ? 'bg-orange-500 border-orange-500 text-white shadow-lg shadow-orange-500/10' 
+                    : 'bg-transparent border-white/10 text-white/60 hover:border-white/30 hover:text-white'
+                }`}
                 onClick={() => setActiveCategory(cat)}
               >
                 {cat}
@@ -135,26 +139,70 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '32px' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredTours.map((tour: any) => (
-            <a key={tour.id} href={`/tour/${tour.id}`} style={{ textDecoration: 'none', color: 'white' }}>
-              <div style={{ background: 'rgba(38,38,38,0.4)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '32px', padding: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', backdropFilter: 'blur(4px)' }}>
+            <a 
+              key={tour.id} 
+              href={`/tour/${tour.id}`} 
+              className="group block"
+            >
+              <div className="overflow-hidden border border-white/5 bg-neutral-900/30 backdrop-blur-sm rounded-[2rem] h-full transition-all duration-300 hover:-translate-y-2 hover:border-white/10 hover:shadow-2xl hover:shadow-orange-500/5 p-4 flex flex-col justify-between">
                 <div>
-                  <div style={{ position: 'relative', height: '220px', borderRadius: '24px', overflow: 'hidden', marginBottom: '20px' }}>
-                    <img src={tour.imageUrl} alt={tour.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.1)', padding: '4px 12px', borderRadius: '9999px', fontSize: '10px', fontWeight: 'bold', trackingWider: '0.05em', textTransform: 'uppercase' }}>{tour.category}</span>
-                    <span className="font-serif" style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(23,23,23,0.85)', backdropFilter: 'blur(4px)', border: '1px solid rgba(255,255,255,0.1)', color: '#f97316', padding: '6px 16px', borderRadius: '12px', fontWeight: 'bold', fontSize: '18px' }}>${tour.price}</span>
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5">
+                    <img 
+                      src={tour.imageUrl} 
+                      alt={tour.title}
+                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span className="bg-black/50 backdrop-blur-md text-white border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase">
+                        {tour.category}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-3 right-3 bg-neutral-950/80 backdrop-blur-md px-4 py-1.5 rounded-xl border border-white/10">
+                      <p className="font-bold text-orange-500 text-lg font-serif">${tour.price}</p>
+                    </div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#f97316', fontSize: '12px', fontWeight: 'bold', marginBottom: '8px' }}>
-                    <MapPin style={{ width: '14px', height: '14px' }} />
-                    <span style={{ textTransform: 'uppercase', trackingWider: '0.05em' }}>{tour.location}</span>
+                  
+                  <div className="space-y-2.5 px-1">
+                    <div className="flex items-center gap-1.5 text-orange-400">
+                      <MapPin className="w-3.5 h-3.5" />
+                      <span className="text-[10px] font-bold tracking-widest uppercase">{tour.location}</span>
+                    </div>
+                    
+                    <h3 className="text-2xl font-serif font-bold group-hover:text-orange-500 transition-colors text-white tracking-tight leading-tight">
+                      {tour.title}
+                    </h3>
                   </div>
-                  <h3 className="font-serif" style={{ fontSize: '24px', margin: '0 0 16px 0', fontWeight: 'bold', lineHeight: '1.2' }}>{tour.title}</h3>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '24px', fontSize: '13px', color: 'rgba(255,255,255,0.5)', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <Clock style={{ width: '14px', height: '14px', color: '#f97316' }} />
+                
+                <div className="flex items-center gap-5 text-white/50 text-xs pt-4 border-t border-white/5 mt-4 px-1">
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-orange-500" />
                     <span>{tour.duration}</span>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#fbbf24' }}>
-                    {/* Фирменная золотая закрашенная звездочка */}
+                  <div className="flex items-center gap-1 text-amber-500">
+                    <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+                    <span className="font-bold text-white/90 text-sm pl-0.5">{tour.rating}</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* О нас */}
+      <section id="about" className="bg-neutral-900/20 border-t border-b border-white/5 py-24">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="relative">
+            <img 
+              src="https://unsplash.com" 
+              alt="Adventure"
+              className="rounded-[2.5rem] shadow-2xl relative z-10 border border-white/10"
+            />
+          </div>
+          
+          <div className="space-y-8">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight text-white tracking-tight">Чому обирають саме <span className="text-orange-500 italic">TourBureau</span>?</h2>
+            <p className="text-white/60 text-base leading-relaxed">
