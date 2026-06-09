@@ -1,189 +1,53 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blink App</title>
+  --foreground: 35 30% 90%;
+  --card: 20 20% 12%;
+  --card-foreground: 35 30% 90%;
+  --popover: 20 20% 12%;
+  --popover-foreground: 35 30% 90%;
+  /* ⚠️ PLACEHOLDER: Replace with your custom dark mode primary color */
+  --primary: 20 80% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 20 20% 18%;
+  --secondary-foreground: 35 30% 70%;
+  --muted: 20 20% 15%;
+  --muted-foreground: 20 10% 60%;
+  --accent: 160 60% 45%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84.2365% 60.1961%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 20 20% 20%;
+  --input: 20 20% 20%;
+  --ring: 20 80% 60%;
 
-    <!-- Подключаем журнальный шрифт Playfair Display напрямую из Google Fonts бесплатно -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  /* ⚠️ PLACEHOLDER: Replace with your custom dark mode chart colors */
+  --chart-1: 20 80% 60%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 35 90% 65%;
+  --chart-4: 200 60% 50%;
+  --chart-5: 280 50% 60%;
 
-    <!-- Принудительно включаем шрифт и красим звёздочки в золото поверх всего сайта -->
-    <style>
-      h1, h2, h3, h4, .font-serif {
-        font-family: 'Playfair Display', Georgia, serif !important;
-      }
-      svg.lucide-star, .text-amber-500 svg, [class*="text-amber"] svg, fill-amber-500 {
-        fill: #fbbf24 !important;
-        color: #fbbf24 !important;
-      }
-    </style>
+  /* ⚠️ PLACEHOLDER: Replace with your custom dark mode sidebar colors */
+  --sidebar: 20 20% 8%;
+  --sidebar-foreground: 35 30% 90%;
+  --sidebar-primary: 20 80% 60%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 20 20% 15%;
+  --sidebar-accent-foreground: 35 30% 90%;
+  --sidebar-border: 20 20% 18%;
+  --sidebar-ring: 20 80% 60%;
+}
 
-    <!-- CRITICAL: DO NOT REMOVE/MODIFY THIS COMMENT OR THE SCRIPT BELOW -->
-    <!-- BLINK_PICKER_RUNTIME_V2:1c5e461e0258 -->
-    <script>(function(){
-  'use strict';
-  if (window.__blinkPickerInstalled) return;
-  window.__blinkPickerInstalled = true;
-  window.__blinkPickerVersion = '2.0.0';
-  var active = false;
-  var hoverEl = null;
-  var hoverOutline = null;
-  var stampQueued = false;
-  var inlineEditing = null;
-  var INLINE_EDIT_DENY = { INPUT: 1, TEXTAREA: 1, SELECT: 1, OPTION: 1, SCRIPT: 1, STYLE: 1, SVG: 1, PATH: 1, IMG: 1, CODE: 1, PRE: 1 };
-  var INLINE_EDIT_SINGLE_LINE = { H1: 1, H2: 1, H3: 1, H4: 1, H5: 1, H6: 1, BUTTON: 1, A: 1, LABEL: 1, SUMMARY: 1 };
-  var COMPUTED_KEYS = ['color','backgroundColor','fontSize','fontWeight','fontFamily','textAlign','textDecorationLine','borderColor','borderWidth','borderStyle','borderRadius','opacity','display','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','width','height','gap','flexDirection','justifyContent','alignItems','lineHeight','letterSpacing'];
-  var SKIP_TAGS = { SCRIPT: 1, STYLE: 1, LINK: 1, META: 1, HEAD: 1, NOSCRIPT: 1, TEMPLATE: 1 };
-  function shortHash(s){
-    var h = 0x811c9dc5;
-    for (var i = 0; i < s.length; i++) {
-      h = (h ^ s.charCodeAt(i)) >>> 0;
-      h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0;
-    }
-    var hex = h.toString(16);
-    while (hex.length < 8) hex = '0' + hex;
-    return hex;
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  function siblingIndex(el){
-    var i = 0;
-    var n = el;
-    while (n && n.previousElementSibling) { i++; n = n.previousElementSibling; }
-    return i;
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  function makeRuntimeId(el){
-    try {
-      var tag = (el.tagName || 'div').toLowerCase();
-      var txt = (el.textContent || '').slice(0, 32);
-      return 'rt:' + tag + ':' + siblingIndex(el) + ':' + shortHash(txt);
-    } catch (err) {
-      try { console.error('[blink-picker] makeRuntimeId failed', err); } catch (e2) {}
-      return 'rt:div:0:00000000';
-    }
-  }
-  function stampElement(el){
-    if (!el || el.nodeType !== 1) return;
-    if (SKIP_TAGS[el.tagName]) return;
-    if (el.dataset && el.dataset.blnkId) return;
-    try { el.setAttribute('data-blnk-id', makeRuntimeId(el)); } catch (err) {
-      try { console.error('[blink-picker] stampElement failed', err); } catch (e2) {}
-    }
-  }
-  function walkAndStamp(root){
-    if (!root) return;
-    stampElement(root);
-    var kids = root.children;
-    if (!kids) return;
-    for (var i = 0; i < kids.length; i++) walkAndStamp(kids[i]);
-  }
-  function scheduleStamp(){
-    if (stampQueued) return;
-    stampQueued = true;
-    var run = function(){
-      stampQueued = false;
-      if (document.body) walkAndStamp(document.body);
-    };
-    if (typeof window.requestIdleCallback === 'function') {
-      window.requestIdleCallback(run, { timeout: 200 });
-    } else {
-      setTimeout(run, 50);
-    }
-  }
-  function installStamper(){
-    if (document.body) walkAndStamp(document.body);
-    try {
-      var mo = new MutationObserver(function(muts){
-        for (var i = 0; i < muts.length; i++) {
-          var added = muts[i].addedNodes;
-          if (added && added.length) { scheduleStamp(); return; }
-        }
-      });
-      if (document.body) mo.observe(document.body, { childList: true, subtree: true });
-    } catch (err) {
-      try { console.error('[blink-picker] MutationObserver failed', err); } catch (e2) {}
-    }
-  }
-  function getFiberKey(el){
-    var keys = Object.keys(el);
-    for (var i = 0; i < keys.length; i++) {
-      var k = keys[i];
-      if (/^__react(Fiber|Internals)/.test(k)) return k;
-    }
-    return null;
-  }
-  function getFiberSource(el){
-    try {
-      var key = getFiberKey(el);
-      if (!key) return null;
-      var fiber = el[key];
-      var hops = 0;
-      while (fiber && hops < 30) {
-        if (fiber._debugSource && fiber._debugSource.fileName) {
-          var s = fiber._debugSource;
-          return { fileName: s.fileName, lineNumber: s.lineNumber || 0, columnNumber: s.columnNumber || 0 };
-        }
-        fiber = fiber.return || fiber._debugOwner || null;
-        hops++;
-      }
-      return null;
-    } catch (err) {
-      try { console.error('[blink-picker] getFiberSource failed', err); } catch (e2) {}
-      return null;
-    }
-  }
-  window.addEventListener('message', function(ev){
-    var msg = ev.data;
-    if (!msg || typeof msg !== 'object') return;
-    if (msg.type === 'TOGGLE_SELECTOR') setActive(!!msg.payload);
-    else if (msg.type === 'SET_ELEMENT_ATTRS') applyAttrs(msg.payload);
-    else if (msg.type === 'RESET_INLINE_STYLES') resetInlineStyles(msg.payload);
-    else if (msg.type === 'PICKER_HEALTH_CHECK') replyAlive(msg, ev.source);
-  });
-  function resetInlineStyles(payload){
-    try {
-      if (!payload || typeof payload !== 'object' || typeof payload.id !== 'string') return;
-      var sel = '[data-blnk-id="' + payload.id.replace(/"/g, '\\"') + '"]';
-      var el = document.querySelector(sel);
-      if (!el) return;
-      var props = Array.isArray(payload.properties) ? payload.properties : null;
-      if (props && props.length > 0) {
-        for (var i = 0; i < props.length; i++) el.style.removeProperty(camelToKebab(props[i]));
-      } else if (el.removeAttribute) {
-        el.removeAttribute('style');
-      }
-    } catch (err) {
-      try { console.error('[blink-picker] resetInlineStyles failed', err); } catch (e2) {}
-    }
-  }
-  function replyAlive(msg, source){
-    try {
-      var target = source || window.parent;
-      target.postMessage({
-        type: 'PICKER_ALIVE',
-        nonce: (msg && msg.nonce) || null,
-        version: window.__blinkPickerVersion || '2.0.0',
-      }, '*');
-    } catch (err) {
-      try { console.error('[blink-picker] replyAlive failed', err); } catch (e2) {}
-    }
-  }
-  function setActive(next){
-    if (active === next) return;
-    active = next;
-    document.documentElement.classList.toggle('blink-picker-active', active);
-    if (!active) {
-      if (inlineEditing) exitInlineEdit(inlineEditing.el, false);
-      clearHover();
-      clearSelectedRectTracking();
-    }
-  }
-})();</script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+}
