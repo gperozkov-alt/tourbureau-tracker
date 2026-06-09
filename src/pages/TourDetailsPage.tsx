@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useParams, Link } from '@tanstack/react-router';
 import { Button, Badge, Input, Textarea, Card } from '@blinkdotnew/ui';
 import { MapPin, Clock, Star, Calendar, Users, CheckCircle2, ArrowLeft, Send } from 'lucide-react';
 
@@ -31,14 +30,22 @@ const TOURS_DATA: Record<string, any> = {
     duration: "5 днів",
     rating: "4.7",
     imageUrl: "https://unsplash.com",
-    description: "Пориньте в атмосферу Вічного міста. Професійні гіди провели вас таємними стежками Колізею, Ватикану та Римського Форуму. Ви дізнаєтеся історію великої імперії, скуштуєте справжню італійську пасту та піцу в автентичних траторіях Двору.",
+    description: "Пориньте в атмосферу Вічного міста. Професійні гіди проведуть вас таємними стежками Колізею, Ватикану та Римського Форуму. Ви дізнаєтеся історію великої імперії, скуштуєте справжню італійську пасту та піцу в автентичних траторіях Двору.",
     category: "Місто"
   }
 };
 
 export default function TourDetailsPage() {
-  const { id } = useParams({ strict: false }) as any;
-  const tourId = id || "1"; 
+  // Безопасное извлечение ID через чистый JavaScript в обход ломающегося роутера
+  let tourId = "1";
+  if (typeof window !== 'undefined') {
+    const parts = window.location.pathname.split('/');
+    const lastPart = parts[parts.length - 1];
+    if (lastPart && TOURS_DATA[lastPart]) {
+      tourId = lastPart;
+    }
+  }
+  
   const tour = TOURS_DATA[tourId] || TOURS_DATA["1"];
 
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
@@ -57,10 +64,10 @@ export default function TourDetailsPage() {
   return (
     <div className="min-h-screen bg-neutral-900 text-white font-sans selection:bg-orange-500">
       <nav className="p-6 max-w-7xl mx-auto flex justify-between items-center border-b border-white/10">
-        <Link to="/" className="text-2xl font-bold tracking-wider text-orange-500 font-serif">TourBureau</Link>
+        <a href="/" className="text-2xl font-bold tracking-wider text-orange-500 font-serif">TourBureau</a>
         <div className="flex gap-6 text-sm font-medium text-white/80">
-          <Link to="/" className="hover:text-orange-500 transition-colors">Головна</Link>
-          <Link to="/" className="hover:text-orange-500 transition-colors">Про нас</Link>
+          <a href="/" className="hover:text-orange-500 transition-colors">Головна</a>
+          <a href="/" className="hover:text-orange-500 transition-colors">Про нас</a>
         </div>
       </nav>
 
@@ -74,10 +81,10 @@ export default function TourDetailsPage() {
         
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-6">
           <div className="space-y-3 text-white">
-            <Link to="/" className="inline-flex items-center gap-2 text-white/60 hover:text-orange-500 transition-colors mb-2 text-sm group">
+            <a href="/" className="inline-flex items-center gap-2 text-white/60 hover:text-orange-500 transition-colors mb-2 text-sm group">
               <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
               <span>Назад до каталогу</span>
-            </Link>
+            </a>
             <div className="flex items-center gap-2 text-orange-500 font-bold text-xs uppercase tracking-widest">
               <MapPin className="w-4 h-4" />
               <span>{tour.location}</span>
@@ -170,7 +177,7 @@ export default function TourDetailsPage() {
 
         <div id="booking-form" className="lg:col-span-1">
           <Card className="p-6 bg-neutral-800 border-white/10 rounded-[2rem] shadow-xl sticky top-24">
-            <h3 className="text-xl font-serif font-bold mb-4 text-orange-500">Швидке尋бронювання</h3>
+            <h3 className="text-xl font-serif font-bold mb-4 text-orange-500">Швидке бронювання</h3>
             
             {isSubmitted ? (
               <div className="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-center space-y-2">
@@ -179,5 +186,3 @@ export default function TourDetailsPage() {
                 <p className="text-xs text-white/60">Наш менеджер зв’яжеться з вами найближчим часом для підтвердження місць.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="space-y-1">
