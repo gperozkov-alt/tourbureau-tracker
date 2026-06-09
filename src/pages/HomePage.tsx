@@ -64,7 +64,7 @@ export default function HomePage() {
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center z-0"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=2000")' }}
+          style={{ backgroundImage: 'url("https://unsplash.com")' }}
         >
           <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]" />
         </div>
