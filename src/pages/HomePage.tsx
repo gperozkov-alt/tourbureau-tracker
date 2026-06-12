@@ -66,6 +66,37 @@ const styles = `
     transform: translateY(-6px);
     border-color: rgba(249,115,22,0.4);
   }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes float1 {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.15; }
+    50% { transform: translateY(-30px) scale(1.1); opacity: 0.25; }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.1; }
+    50% { transform: translateY(20px) scale(0.9); opacity: 0.2; }
+  }
+  .hero-blob-1 {
+    position: absolute; width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(249,115,22,0.3), transparent);
+    top: -100px; left: -100px;
+    animation: float1 6s ease-in-out infinite;
+  }
+  .hero-blob-2 {
+    position: absolute; width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(249,115,22,0.2), transparent);
+    bottom: -80px; right: -80px;
+    animation: float2 8s ease-in-out infinite;
+  }
+  .hero-blob-3 {
+    position: absolute; width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(234,88,12,0.15), transparent);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    animation: float1 10s ease-in-out infinite;
+  }
 `;
 
 export default function HomePage() {
@@ -100,11 +131,10 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-        <video autoPlay muted loop playsInline style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
-          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4" />
-        </video>
-        <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1 }} />
+      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: 'linear-gradient(135deg, #1a0a00, #2d1200, #171717, #0a1628, #171717)', backgroundSize: '400% 400%', animation: 'gradientShift 8s ease infinite' }}>
+        <div className="hero-blob-1" />
+        <div className="hero-blob-2" />
+        <div className="hero-blob-3" />
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
           <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '20px', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
             Відкрий світ разом з <span style={{ color: '#f97316', fontStyle: 'italic' }}>TourBureau</span>
