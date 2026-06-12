@@ -131,7 +131,7 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: 'https://img.magnific.com/free-photo/beautiful-shot-sunset-reflecting-sea_181624-8671.jpg?semt=ais_hybrid&w=740&q=80 center/cover no-repeat' }}>
+      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: 'url(https://img.magnific.com/free-photo/beautiful-shot-sunset-reflecting-sea_181624-8671.jpg?semt=ais_hybrid&w=740&q=80) center/cover no-repeat' }}>
         <div className="hero-blob-1" />
         <div className="hero-blob-2" />
         <div className="hero-blob-3" />
