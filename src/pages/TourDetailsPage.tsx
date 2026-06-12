@@ -82,9 +82,20 @@ export default function TourDetailsPage() {
     setLoading(true);
     try {
       await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chat_id: CHAT_ID, text })
+      });
+      await fetch('http://127.0.0.1:5000/api/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          full_name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          comment: formData.message,
+        })
       });
       alert('Запит успішно надіслано! Ми зв\'яжемося з вами найближчим часом.');
       setFormData({ name: '', email: '', phone: '', message: '' });
