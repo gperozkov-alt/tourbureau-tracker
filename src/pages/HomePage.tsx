@@ -172,7 +172,7 @@ export default function HomePage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '30px' }}>
           {filteredTours.map((tour: any, index: number) => (
             
-              key={tour.id}
+              <a key={tour.id}
               href={`/tour/${tour.id}`}
               className={`sa ${delays[index] || 'sa-d1'}`}
               style={{ textDecoration: 'none', color: 'white' }}
