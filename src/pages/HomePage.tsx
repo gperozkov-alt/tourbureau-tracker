@@ -222,6 +222,12 @@ export default function HomePage() {
           <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>50+</div>
           <div style={{ fontSize: '12px', color: '#aaa' }}>Країн світу</div>
   </div>
+      </div>
+    </div>
+
+    {/* Висота блоку */}
+    <div style={{ height: '350px' }} />
+  </div>
 </section>
     </div>
   );
