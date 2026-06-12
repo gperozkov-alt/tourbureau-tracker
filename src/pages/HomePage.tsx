@@ -151,57 +151,12 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-     {/* Про нас */}
+    {/* Про нас */}
 <section id="about" style={{ maxWidth: '1200px', margin: '80px auto', padding: '0 20px' }}>
-  <div style={{ position: 'relative', background: '#262626', borderRadius: '20px', padding: '60px 40px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
+  <div style={{ position: 'relative', background: '#262626', borderRadius: '20px', padding: '40px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden', minHeight: '500px' }}>
     
-    {/* Відгуки що плавають на фоні */}
-    {[
-      { name: 'Олена К.', tour: 'Магія Ісландії', text: 'Найкраща подорож у моєму житті! Північне сяйво — це неймовірно.', rating: 5, avatar: 'О', top: '10%', left: '55%', rotate: '-3deg' },
-      { name: 'Максим Т.', tour: 'Сафарі в Кенії', text: 'Бачив лева на відстані 3 метрів! Все організовано бездоганно.', rating: 5, avatar: 'М', top: '45%', left: '62%', rotate: '2deg' },
-      { name: 'Аня В.', tour: 'Золоті пляжі Балі', text: 'Балі перевершив всі очікування. Вже плануємо повернутись!', rating: 5, avatar: 'А', top: '72%', left: '52%', rotate: '-1deg' },
-    ].map((review, i) => (
-      <div key={i} style={{
-        position: 'absolute',
-        top: review.top,
-        left: review.left,
-        width: '260px',
-        background: 'rgba(30,30,30,0.85)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '16px',
-        padding: '16px',
-        border: '1px solid rgba(249,115,22,0.2)',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(249,115,22,0.05)',
-        transform: `rotate(${review.rotate})`,
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-        zIndex: 2,
-      }}
-      onMouseEnter={e => {
-        (e.currentTarget as HTMLElement).style.transform = `rotate(0deg) translateY(-5px)`;
-        (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(249,115,22,0.2), 0 0 30px rgba(249,115,22,0.1)';
-      }}
-      onMouseLeave={e => {
-        (e.currentTarget as HTMLElement).style.transform = `rotate(${review.rotate})`;
-        (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(249,115,22,0.05)';
-      }}
-      >
-        <div style={{ fontSize: '28px', color: 'rgba(249,115,22,0.3)', lineHeight: 1, marginBottom: '8px' }}>"</div>
-        <p style={{ color: '#ccc', fontSize: '12px', lineHeight: '1.6', marginBottom: '12px' }}>{review.text}</p>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #f97316, #ea580c)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '14px', flexShrink: 0 }}>
-            {review.avatar}
-          </div>
-          <div>
-            <div style={{ fontWeight: 'bold', color: 'white', fontSize: '12px' }}>{review.name}</div>
-            <div style={{ color: '#f97316', fontSize: '10px' }}>{review.tour}</div>
-          </div>
-          <div style={{ marginLeft: 'auto', color: '#f97316', fontSize: '11px' }}>{'★'.repeat(review.rating)}</div>
-        </div>
-      </div>
-    ))}
-
-    {/* Основний контент */}
-    <div style={{ position: 'relative', zIndex: 3, maxWidth: '45%' }}>
+    {/* Текст зліва */}
+    <div style={{ position: 'relative', zIndex: 3, maxWidth: '42%' }}>
       <h2 style={{ fontSize: '36px', color: '#f97316', margin: '0 0 20px 0' }}>Про нас</h2>
       <p style={{ color: '#ddd', lineHeight: '1.8', marginBottom: '20px' }}>
         TourBureau — це команда досвідчених мандрівників та фахівців туристичної галузі. Ми створюємо унікальні маршрути по всьому світу з 2015 року.
@@ -221,9 +176,62 @@ export default function HomePage() {
         <div>
           <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>50+</div>
           <div style={{ fontSize: '12px', color: '#aaa' }}>Країн світу</div>
-  </div>
+        </div>
       </div>
     </div>
+
+    {/* Фото справа */}
+    <div style={{ position: 'absolute', top: '40px', right: '40px', width: '45%', height: '55%', borderRadius: '15px', overflow: 'hidden', zIndex: 1 }}>
+      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800" alt="Про нас" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+    </div>
+
+    {/* Відгуки в чорному просторі */}
+    {[
+      { name: 'Олена К.', tour: 'Магія Ісландії', text: 'Найкраща подорож у моєму житті! Північне сяйво — це неймовірно.', avatar: 'О', style: { bottom: '30px', right: '220px', width: '240px', rotate: '-2deg' } },
+      { name: 'Максим Т.', tour: 'Сафарі в Кенії', text: 'Бачив лева на відстані 3 метрів! Все організовано бездоганно.', avatar: 'М', style: { bottom: '30px', right: '0px', width: '210px', rotate: '1.5deg' } },
+      { name: 'Аня В.', tour: 'Золоті пляжі Балі', text: 'Балі перевершив всі очікування. Вже плануємо повернутись!', avatar: 'А', style: { top: '40px', left: '44%', width: '180px', rotate: '-1deg' } },
+    ].map((review, i) => (
+      <div key={i} style={{
+        position: 'absolute',
+        ...review.style,
+        background: 'rgba(20,20,20,0.9)',
+        backdropFilter: 'blur(10px)',
+        borderRadius: '16px',
+        padding: '14px',
+        border: '1px solid rgba(249,115,22,0.2)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+        transform: `rotate(${review.style.rotate})`,
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        zIndex: 4,
+        cursor: 'default',
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLElement).style.transform = 'rotate(0deg) translateY(-5px)';
+        (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 40px rgba(249,115,22,0.2)';
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLElement).style.transform = `rotate(${review.style.rotate})`;
+        (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0,0,0,0.5)';
+      }}
+      >
+        <div style={{ fontSize: '24px', color: 'rgba(249,115,22,0.4)', lineHeight: 1, marginBottom: '6px' }}>"</div>
+        <p style={{ color: '#ccc', fontSize: '11px', lineHeight: '1.6', marginBottom: '10px', margin: '0 0 10px 0' }}>{review.text}</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'linear-gradient(135deg, #f97316, #ea580c)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '12px', flexShrink: 0 }}>
+            {review.avatar}
+          </div>
+          <div>
+            <div style={{ fontWeight: 'bold', color: 'white', fontSize: '11px' }}>{review.name}</div>
+            <div style={{ color: '#f97316', fontSize: '10px' }}>{review.tour}</div>
+          </div>
+          <div style={{ marginLeft: 'auto', color: '#f97316', fontSize: '10px' }}>★★★★★</div>
+        </div>
+      </div>
+    ))}
+
+    <div style={{ height: '200px' }} />
+  </div>
+</section>
 
     {/* Висота блоку */}
     <div style={{ height: '350px' }} />
