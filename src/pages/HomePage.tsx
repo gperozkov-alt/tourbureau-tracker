@@ -151,9 +151,9 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-    {/* Про нас */}
+   {/* Про нас */}
 <section id="about" style={{ maxWidth: '1200px', margin: '80px auto', padding: '0 20px' }}>
-  <div style={{ position: 'relative', background: '#262626', borderRadius: '20px', padding: '40px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden', minHeight: '500px' }}>
+  <div style={{ position: 'relative', background: '#262626', borderRadius: '20px', padding: '40px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden', minHeight: '600px' }}>
     
     {/* Текст зліва */}
     <div style={{ position: 'relative', zIndex: 3, maxWidth: '42%' }}>
@@ -181,15 +181,16 @@ export default function HomePage() {
     </div>
 
     {/* Фото справа */}
-    <div style={{ position: 'absolute', top: '40px', right: '40px', width: '45%', height: '55%', borderRadius: '15px', overflow: 'hidden', zIndex: 1 }}>
+    <div style={{ position: 'absolute', top: '40px', right: '40px', width: '45%', height: '50%', borderRadius: '15px', overflow: 'hidden', zIndex: 1 }}>
       <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800" alt="Про нас" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
     </div>
 
-    {/* Відгуки в чорному просторі */}
+    {/* Відгуки */}
     {[
-      { name: 'Олена К.', tour: 'Магія Ісландії', text: 'Найкраща подорож у моєму житті! Північне сяйво — це неймовірно.', avatar: 'О', style: { bottom: '30px', right: '220px', width: '240px', rotate: '-2deg' } },
-      { name: 'Максим Т.', tour: 'Сафарі в Кенії', text: 'Бачив лева на відстані 3 метрів! Все організовано бездоганно.', avatar: 'М', style: { bottom: '30px', right: '0px', width: '210px', rotate: '1.5deg' } },
-      { name: 'Аня В.', tour: 'Золоті пляжі Балі', text: 'Балі перевершив всі очікування. Вже плануємо повернутись!', avatar: 'А', style: { top: '40px', left: '44%', width: '180px', rotate: '-1deg' } },
+      { name: 'Аня В.', tour: 'Золоті пляжі Балі', text: 'Балі перевершив всі очікування. Вже плануємо повернутись!', avatar: 'А', style: { bottom: '30px', left: '44%', width: '185px', rotate: '-1deg' } },
+      { name: 'Олена К.', tour: 'Магія Ісландії', text: 'Найкраща подорож у моєму житті! Північне сяйво — це неймовірно.', avatar: 'О', style: { bottom: '30px', left: '58%', width: '185px', rotate: '1.5deg' } },
+      { name: 'Максим Т.', tour: 'Сафарі в Кенії', text: 'Бачив лева на відстані 3 метрів! Все організовано бездоганно.', avatar: 'М', style: { bottom: '30px', left: '72%', width: '185px', rotate: '-1deg' } },
+      { name: 'Дмитро С.', tour: 'Альпійська казка', text: 'Швейцарія — це казка. Сир, шоколад і засніжені гори. Повертаюсь щороку!', avatar: 'Д', style: { bottom: '30px', right: '0px', width: '185px', rotate: '1deg' } },
     ].map((review, i) => (
       <div key={i} style={{
         position: 'absolute',
@@ -215,7 +216,7 @@ export default function HomePage() {
       }}
       >
         <div style={{ fontSize: '24px', color: 'rgba(249,115,22,0.4)', lineHeight: 1, marginBottom: '6px' }}>"</div>
-        <p style={{ color: '#ccc', fontSize: '11px', lineHeight: '1.6', marginBottom: '10px', margin: '0 0 10px 0' }}>{review.text}</p>
+        <p style={{ color: '#ccc', fontSize: '11px', lineHeight: '1.6', margin: '0 0 10px 0' }}>{review.text}</p>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'linear-gradient(135deg, #f97316, #ea580c)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '12px', flexShrink: 0 }}>
             {review.avatar}
@@ -229,11 +230,10 @@ export default function HomePage() {
       </div>
     ))}
 
-    <div style={{ height: '200px' }} />
+    <div style={{ height: '250px' }} />
   </div>
 </section>
-
-   </div>
+    </div>
   );
 }
 
