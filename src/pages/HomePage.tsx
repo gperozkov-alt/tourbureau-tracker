@@ -97,12 +97,12 @@ export default function HomePage() {
         <div style={{ display: 'flex', gap: '20px' }}>
           <a href="/" style={{ color: 'white', textDecoration: 'none' }}>Головна</a>
           <a href="#about" style={{ color: 'white', textDecoration: 'none' }}>Про нас</a>
-        </div><source src="https://drive.google.com/file/d/1hegrehsFN9subF5ryFJA_GvBFpOTLanj/view?usp=sharing" type="video/mp4" />
+        </div>
       </nav>
 
       <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
         <video autoPlay muted loop playsInline style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
-          
+          <source src="https://drive.google.com/uc?export=download&id=1hegrehsFN9subF5ryFJA_GvBFpOTLanj" type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1 }} />
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
@@ -180,7 +180,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Про нас */}
       <section id="about" style={{ maxWidth: '1200px', margin: '80px auto', padding: '0 20px' }}>
         <div style={{ background: '#262626', borderRadius: '20px', padding: '60px 40px', border: '1px solid rgba(255,255,255,0.05)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
           <div>
@@ -199,7 +198,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Відгуки */}
       <section style={{ maxWidth: '1200px', margin: '60px auto', padding: '0 20px 80px 20px' }}>
         <h2 style={{ fontSize: '36px', color: '#f97316', marginBottom: '10px', textAlign: 'center' }}>Що кажуть наші клієнти</h2>
         <p style={{ color: '#aaa', textAlign: 'center', marginBottom: '40px' }}>Реальні відгуки від реальних мандрівників</p>
