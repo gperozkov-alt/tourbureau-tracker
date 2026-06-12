@@ -96,7 +96,7 @@ export default function TourDetailsPage() {
   };
 
   return (
-    <div style={{ backgroundColor: '#171717', color: 'white', minHeight: '100vh', fontFamily: 'sans-serif', paddingBottom: '50px' }}>
+    <div style={{ backgroundColor: '#171717', color: 'white', minHeight: '100vh',fontFamily: 'Geist, sans-serif', paddingBottom: '50px' }}>
       <nav style={{ padding: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto' }}>
         <a href="/" style={{ fontSize: '24px', fontWeight: 'bold', color: '#f97316', textDecoration: 'none' }}>TourBureau</a>
         <div style={{ display: 'flex', gap: '20px' }}>
