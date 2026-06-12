@@ -151,10 +151,57 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-      {/* Про нас */}
+     {/* Про нас */}
 <section id="about" style={{ maxWidth: '1200px', margin: '80px auto', padding: '0 20px' }}>
-  <div style={{ background: '#262626', borderRadius: '20px', padding: '60px 40px', border: '1px solid rgba(255,255,255,0.05)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
-    <div>
+  <div style={{ position: 'relative', background: '#262626', borderRadius: '20px', padding: '60px 40px', border: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
+    
+    {/* Відгуки що плавають на фоні */}
+    {[
+      { name: 'Олена К.', tour: 'Магія Ісландії', text: 'Найкраща подорож у моєму житті! Північне сяйво — це неймовірно.', rating: 5, avatar: 'О', top: '10%', left: '55%', rotate: '-3deg' },
+      { name: 'Максим Т.', tour: 'Сафарі в Кенії', text: 'Бачив лева на відстані 3 метрів! Все організовано бездоганно.', rating: 5, avatar: 'М', top: '45%', left: '62%', rotate: '2deg' },
+      { name: 'Аня В.', tour: 'Золоті пляжі Балі', text: 'Балі перевершив всі очікування. Вже плануємо повернутись!', rating: 5, avatar: 'А', top: '72%', left: '52%', rotate: '-1deg' },
+    ].map((review, i) => (
+      <div key={i} style={{
+        position: 'absolute',
+        top: review.top,
+        left: review.left,
+        width: '260px',
+        background: 'rgba(30,30,30,0.85)',
+        backdropFilter: 'blur(10px)',
+        borderRadius: '16px',
+        padding: '16px',
+        border: '1px solid rgba(249,115,22,0.2)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(249,115,22,0.05)',
+        transform: `rotate(${review.rotate})`,
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        zIndex: 2,
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLElement).style.transform = `rotate(0deg) translateY(-5px)`;
+        (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(249,115,22,0.2), 0 0 30px rgba(249,115,22,0.1)';
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLElement).style.transform = `rotate(${review.rotate})`;
+        (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(249,115,22,0.05)';
+      }}
+      >
+        <div style={{ fontSize: '28px', color: 'rgba(249,115,22,0.3)', lineHeight: 1, marginBottom: '8px' }}>"</div>
+        <p style={{ color: '#ccc', fontSize: '12px', lineHeight: '1.6', marginBottom: '12px' }}>{review.text}</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #f97316, #ea580c)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '14px', flexShrink: 0 }}>
+            {review.avatar}
+          </div>
+          <div>
+            <div style={{ fontWeight: 'bold', color: 'white', fontSize: '12px' }}>{review.name}</div>
+            <div style={{ color: '#f97316', fontSize: '10px' }}>{review.tour}</div>
+          </div>
+          <div style={{ marginLeft: 'auto', color: '#f97316', fontSize: '11px' }}>{'★'.repeat(review.rating)}</div>
+        </div>
+      </div>
+    ))}
+
+    {/* Основний контент */}
+    <div style={{ position: 'relative', zIndex: 3, maxWidth: '45%' }}>
       <h2 style={{ fontSize: '36px', color: '#f97316', margin: '0 0 20px 0' }}>Про нас</h2>
       <p style={{ color: '#ddd', lineHeight: '1.8', marginBottom: '20px' }}>
         TourBureau — це команда досвідчених мандрівників та фахівців туристичної галузі. Ми створюємо унікальні маршрути по всьому світу з 2015 року.
@@ -174,58 +221,6 @@ export default function HomePage() {
         <div>
           <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>50+</div>
           <div style={{ fontSize: '12px', color: '#aaa' }}>Країн світу</div>
-        </div>
-      </div>
-    </div>
-    <div style={{ position: 'relative', height: '350px', borderRadius: '15px', overflow: 'hidden' }}>
-      <img src="https://img.magnific.com/free-photo/young-female-traveler-enjoying-rural-surroundings_23-2149125532.jpg?semt=ais_hybrid&w=740&q=80" alt="Про нас" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-    </div>
-  </div>
-</section>
-      {/* Відгуки */}
-<section style={{ maxWidth: '1200px', margin: '80px auto', padding: '0 20px' }}>
-  <h2 style={{ fontSize: '36px', color: '#f97316', marginBottom: '10px', textAlign: 'center' }}>Що кажуть наші клієнти</h2>
-  <p style={{ color: '#aaa', textAlign: 'center', marginBottom: '50px' }}>Реальні відгуки від реальних мандрівників</p>
-  
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '30px' }}>
-    {[
-      { name: 'Олена К.', tour: 'Магія Ісландії', text: 'Найкраща подорож у моєму житті! Північне сяйво, гейзери — це неймовірно. Команда TourBureau подбала про кожну дрібницю.', rating: 5, avatar: 'О' },
-      { name: 'Максим Т.', tour: 'Сафарі в Кенії', text: 'Бачив лева на відстані 3 метрів! Серце зупинилось. Гід був професіоналом, все організовано бездоганно.', rating: 5, avatar: 'М' },
-      { name: 'Аня В.', tour: 'Золоті пляжі Балі', text: 'Балі перевершив всі очікування. Храми, рисові поля, серфінг — 10 днів пролетіли як один. Вже плануємо повернутись!', rating: 5, avatar: 'А' },
-    ].map((review, i) => (
-      <div key={i} style={{
-        background: 'linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%)',
-        borderRadius: '20px',
-        padding: '30px',
-        border: '1px solid rgba(249,115,22,0.15)',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.03)',
-        transform: 'translateY(0px)',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-        position: 'relative' as const,
-      }}
-      onMouseEnter={e => {
-        (e.currentTarget as HTMLElement).style.transform = 'translateY(-10px)';
-        (e.currentTarget as HTMLElement).style.boxShadow = '0 20px 60px rgba(249,115,22,0.15), 0 0 0 1px rgba(249,115,22,0.2)';
-      }}
-      onMouseLeave={e => {
-        (e.currentTarget as HTMLElement).style.transform = 'translateY(0px)';
-        (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.03)';
-      }}
-      >
-        <div style={{ fontSize: '40px', color: 'rgba(249,115,22,0.2)', marginBottom: '15px', lineHeight: 1 }}>"</div>
-        <p style={{ color: '#ddd', lineHeight: '1.7', marginBottom: '25px', fontSize: '14px' }}>{review.text}</p>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'linear-gradient(135deg, #f97316, #ea580c)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '18px' }}>
-            {review.avatar}
-          </div>
-          <div>
-            <div style={{ fontWeight: 'bold', color: 'white', fontSize: '14px' }}>{review.name}</div>
-            <div style={{ color: '#f97316', fontSize: '11px' }}>{review.tour}</div>
-          </div>
-          <div style={{ marginLeft: 'auto', color: '#f97316', fontSize: '14px' }}>{'★'.repeat(review.rating)}</div>
-        </div>
-      </div>
-    ))}
   </div>
 </section>
     </div>
