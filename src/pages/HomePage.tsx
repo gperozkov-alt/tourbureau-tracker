@@ -71,15 +71,22 @@ const styles = `
 export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('Усі');
+  const [sortPrice, setSortPrice] = useState('none');
 
   const categories = ['Усі', 'Гори', 'Пляж', 'Місто', 'Природа', 'Сафарі'];
 
-  const filteredTours = TOURS_STATIC.filter((tour: any) => {
-    const matchesSearch = tour.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         tour.location.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = activeCategory === 'Усі' || tour.category === activeCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const filteredTours = TOURS_STATIC
+    .filter((tour: any) => {
+      const matchesSearch = tour.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           tour.location.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = activeCategory === 'Усі' || tour.category === activeCategory;
+      return matchesSearch && matchesCategory;
+    })
+    .sort((a: any, b: any) => {
+      if (sortPrice === 'asc') return a.price - b.price;
+      if (sortPrice === 'desc') return b.price - a.price;
+      return 0;
+    });
 
   return (
     <div style={{ backgroundColor: '#171717', color: 'white', minHeight: '100vh', fontFamily: 'Geist, sans-serif' }}>
@@ -121,16 +128,34 @@ export default function HomePage() {
             <h2 style={{ fontSize: '32px', margin: '0 0 10px 0', color: '#f97316' }}>Наші популярні напрямки</h2>
             <p style={{ color: '#aaa', margin: '0' }}>Обирайте тур, який відповідає вашому настрою та бюджету.</p>
           </div>
-          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-            {categories.map(cat => (
-              <button
-                key={cat}
-                style={{ padding: '8px 16px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', background: activeCategory === cat ? '#f97316' : 'transparent', color: 'white', fontSize: '12px', fontWeight: 'bold' }}
-                onClick={() => setActiveCategory(cat)}
-              >
-                {cat}
-              </button>
-            ))}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-end' }}>
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+              {categories.map(cat => (
+                <button
+                  key={cat}
+                  style={{ padding: '8px 16px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', background: activeCategory === cat ? '#f97316' : 'transparent', color: 'white', fontSize: '12px', fontWeight: 'bold' }}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <span style={{ color: '#aaa', fontSize: '12px' }}>Ціна:</span>
+              {[
+                { label: 'Будь-яка', val: 'none' },
+                { label: '↑ Дешевші', val: 'asc' },
+                { label: '↓ Дорожчі', val: 'desc' },
+              ].map(opt => (
+                <button
+                  key={opt.val}
+                  onClick={() => setSortPrice(opt.val)}
+                  style={{ padding: '8px 16px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', background: sortPrice === opt.val ? '#f97316' : 'transparent', color: 'white', fontSize: '12px', fontWeight: 'bold' }}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -151,67 +176,68 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-  {/* Про нас */}
-<section id="about" style={{ maxWidth: '1200px', margin: '80px auto', padding: '0 20px' }}>
-  <div style={{ background: '#262626', borderRadius: '20px', padding: '60px 40px', border: '1px solid rgba(255,255,255,0.05)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
-    <div>
-      <h2 style={{ fontSize: '36px', color: '#f97316', margin: '0 0 20px 0' }}>Про нас</h2>
-      <p style={{ color: '#ddd', lineHeight: '1.8', marginBottom: '20px' }}>TourBureau — це команда досвідчених мандрівників та фахівців туристичної галузі. Ми створюємо унікальні маршрути по всьому світу з 2015 року.</p>
-      <p style={{ color: '#ddd', lineHeight: '1.8', marginBottom: '30px' }}>Наша мета — зробити кожну подорож незабутньою. Ми подбаємо про кожну деталь, щоб ви могли просто насолоджуватись пригодою.</p>
-      <div style={{ display: 'flex', gap: '40px' }}>
-        <div><div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>500+</div><div style={{ fontSize: '12px', color: '#aaa' }}>Турів на рік</div></div>
-        <div><div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>10k+</div><div style={{ fontSize: '12px', color: '#aaa' }}>Задоволених клієнтів</div></div>
-        <div><div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>50+</div><div style={{ fontSize: '12px', color: '#aaa' }}>Країн світу</div></div>
-      </div>
-    </div>
-    <div style={{ height: '350px', borderRadius: '15px', overflow: 'hidden' }}>
-      <img src="https://img.magnific.com/free-photo/young-female-traveler-enjoying-rural-surroundings_23-2149125532.jpg?semt=ais_hybrid&w=740&q=80" alt="Про нас" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-    </div>
-  </div>
-</section>
 
-{/* Відгуки */}
-<section style={{ maxWidth: '1200px', margin: '60px auto', padding: '0 20px' }}>
-  <h2 style={{ fontSize: '36px', color: '#f97316', marginBottom: '10px', textAlign: 'center' }}>Що кажуть наші клієнти</h2>
-  <p style={{ color: '#aaa', textAlign: 'center', marginBottom: '40px' }}>Реальні відгуки від реальних мандрівників</p>
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '20px' }}>
-    {[
-      { name: 'Аня В.', tour: 'Золоті пляжі Балі', text: 'Балі перевершив всі очікування. Храми, серфінг — 10 днів пролетіли як один!', avatar: 'А' },
-      { name: 'Олена К.', tour: 'Магія Ісландії', text: 'Найкраща подорож у моєму житті! Північне сяйво — це неймовірно.', avatar: 'О' },
-      { name: 'Максим Т.', tour: 'Сафарі в Кенії', text: 'Бачив лева на відстані 3 метрів! Все організовано бездоганно.', avatar: 'М' },
-      { name: 'Дмитро С.', tour: 'Альпійська казка', text: 'Швейцарія — це казка. Сир, шоколад і засніжені гори. Повертаюсь щороку!', avatar: 'Д' },
-    ].map((review, i) => (
-      <div key={i} style={{
-        background: 'linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%)',
-        borderRadius: '20px',
-        padding: '24px',
-        border: '1px solid rgba(249,115,22,0.15)',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-      }}
-      onMouseEnter={e => {
-        (e.currentTarget as HTMLElement).style.transform = 'translateY(-8px)';
-        (e.currentTarget as HTMLElement).style.boxShadow = '0 20px 60px rgba(249,115,22,0.15)';
-      }}
-      onMouseLeave={e => {
-        (e.currentTarget as HTMLElement).style.transform = 'translateY(0px)';
-        (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0,0,0,0.3)';
-      }}
-      >
-        <div style={{ fontSize: '36px', color: 'rgba(249,115,22,0.3)', lineHeight: 1, marginBottom: '12px' }}>"</div>
-        <p style={{ color: '#ddd', fontSize: '13px', lineHeight: '1.7', margin: '0 0 20px 0' }}>{review.text}</p>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, #f97316, #ea580c)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '14px', flexShrink: 0 }}>{review.avatar}</div>
+      {/* Про нас */}
+      <section id="about" style={{ maxWidth: '1200px', margin: '80px auto', padding: '0 20px' }}>
+        <div style={{ background: '#262626', borderRadius: '20px', padding: '60px 40px', border: '1px solid rgba(255,255,255,0.05)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
           <div>
-            <div style={{ fontWeight: 'bold', color: 'white', fontSize: '13px' }}>{review.name}</div>
-            <div style={{ color: '#f97316', fontSize: '11px' }}>{review.tour}</div>
+            <h2 style={{ fontSize: '36px', color: '#f97316', margin: '0 0 20px 0' }}>Про нас</h2>
+            <p style={{ color: '#ddd', lineHeight: '1.8', marginBottom: '20px' }}>TourBureau — це команда досвідчених мандрівників та фахівців туристичної галузі. Ми створюємо унікальні маршрути по всьому світу з 2015 року.</p>
+            <p style={{ color: '#ddd', lineHeight: '1.8', marginBottom: '30px' }}>Наша мета — зробити кожну подорож незабутньою. Ми подбаємо про кожну деталь, щоб ви могли просто насолоджуватись пригодою.</p>
+            <div style={{ display: 'flex', gap: '40px' }}>
+              <div><div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>500+</div><div style={{ fontSize: '12px', color: '#aaa' }}>Турів на рік</div></div>
+              <div><div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>10k+</div><div style={{ fontSize: '12px', color: '#aaa' }}>Задоволених клієнтів</div></div>
+              <div><div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>50+</div><div style={{ fontSize: '12px', color: '#aaa' }}>Країн світу</div></div>
+            </div>
           </div>
-          <div style={{ marginLeft: 'auto', color: '#f97316' }}>★★★★★</div>
+          <div style={{ height: '350px', borderRadius: '15px', overflow: 'hidden' }}>
+            <img src="https://img.magnific.com/free-photo/young-female-traveler-enjoying-rural-surroundings_23-2149125532.jpg?semt=ais_hybrid&w=740&q=80" alt="Про нас" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
         </div>
-      </div>
-    ))}
-  </div>
-</section>
+      </section>
+
+      {/* Відгуки */}
+      <section style={{ maxWidth: '1200px', margin: '60px auto', padding: '0 20px 80px 20px' }}>
+        <h2 style={{ fontSize: '36px', color: '#f97316', marginBottom: '10px', textAlign: 'center' }}>Що кажуть наші клієнти</h2>
+        <p style={{ color: '#aaa', textAlign: 'center', marginBottom: '40px' }}>Реальні відгуки від реальних мандрівників</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '20px' }}>
+          {[
+            { name: 'Аня В.', tour: 'Золоті пляжі Балі', text: 'Балі перевершив всі очікування. Храми, серфінг — 10 днів пролетіли як один!', avatar: 'А' },
+            { name: 'Олена К.', tour: 'Магія Ісландії', text: 'Найкраща подорож у моєму житті! Північне сяйво — це неймовірно.', avatar: 'О' },
+            { name: 'Максим Т.', tour: 'Сафарі в Кенії', text: 'Бачив лева на відстані 3 метрів! Все організовано бездоганно.', avatar: 'М' },
+            { name: 'Дмитро С.', tour: 'Альпійська казка', text: 'Швейцарія — це казка. Сир, шоколад і засніжені гори. Повертаюсь щороку!', avatar: 'Д' },
+          ].map((review, i) => (
+            <div key={i} style={{
+              background: 'linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%)',
+              borderRadius: '20px',
+              padding: '24px',
+              border: '1px solid rgba(249,115,22,0.15)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.transform = 'translateY(-8px)';
+              (e.currentTarget as HTMLElement).style.boxShadow = '0 20px 60px rgba(249,115,22,0.15)';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.transform = 'translateY(0px)';
+              (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 32px rgba(0,0,0,0.3)';
+            }}
+            >
+              <div style={{ fontSize: '36px', color: 'rgba(249,115,22,0.3)', lineHeight: 1, marginBottom: '12px' }}>"</div>
+              <p style={{ color: '#ddd', fontSize: '13px', lineHeight: '1.7', margin: '0 0 20px 0' }}>{review.text}</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, #f97316, #ea580c)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '14px', flexShrink: 0 }}>{review.avatar}</div>
+                <div>
+                  <div style={{ fontWeight: 'bold', color: 'white', fontSize: '13px' }}>{review.name}</div>
+                  <div style={{ color: '#f97316', fontSize: '11px' }}>{review.tour}</div>
+                </div>
+                <div style={{ marginLeft: 'auto', color: '#f97316' }}>★★★★★</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
