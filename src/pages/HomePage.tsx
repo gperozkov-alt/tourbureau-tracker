@@ -48,7 +48,7 @@ const TOURS_STATIC = [
     price: 1800,
     duration: "6 днів",
     rating: "4.9",
-    imageUrl: "https://cdn.pixabay.com/photo/2017/09/25/13/14/lion-2785184_1280.jpg",
+    imageUrl: "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800",
     category: "Сафарі"
   }
 ];
