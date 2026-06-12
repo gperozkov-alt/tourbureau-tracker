@@ -178,7 +178,7 @@ export default function HomePage() {
       </div>
     </div>
     <div style={{ position: 'relative', height: '350px', borderRadius: '15px', overflow: 'hidden' }}>
-      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800" alt="Про нас" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      <img src="https://img.magnific.com/free-photo/young-female-traveler-enjoying-rural-surroundings_23-2149125532.jpg?semt=ais_hybrid&w=740&q=80" alt="Про нас" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
     </div>
   </div>
 </section>
