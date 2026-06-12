@@ -151,6 +151,37 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      {/* Про нас */}
+<section id="about" style={{ maxWidth: '1200px', margin: '80px auto', padding: '0 20px' }}>
+  <div style={{ background: '#262626', borderRadius: '20px', padding: '60px 40px', border: '1px solid rgba(255,255,255,0.05)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
+    <div>
+      <h2 style={{ fontSize: '36px', color: '#f97316', margin: '0 0 20px 0' }}>Про нас</h2>
+      <p style={{ color: '#ddd', lineHeight: '1.8', marginBottom: '20px' }}>
+        TourBureau — це команда досвідчених мандрівників та фахівців туристичної галузі. Ми створюємо унікальні маршрути по всьому світу з 2015 року.
+      </p>
+      <p style={{ color: '#ddd', lineHeight: '1.8', marginBottom: '30px' }}>
+        Наша мета — зробити кожну подорож незабутньою. Ми подбаємо про кожну деталь, щоб ви могли просто насолоджуватись пригодою.
+      </p>
+      <div style={{ display: 'flex', gap: '40px' }}>
+        <div>
+          <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>500+</div>
+          <div style={{ fontSize: '12px', color: '#aaa' }}>Турів на рік</div>
+        </div>
+        <div>
+          <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>10k+</div>
+          <div style={{ fontSize: '12px', color: '#aaa' }}>Задоволених клієнтів</div>
+        </div>
+        <div>
+          <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#f97316' }}>50+</div>
+          <div style={{ fontSize: '12px', color: '#aaa' }}>Країн світу</div>
+        </div>
+      </div>
+    </div>
+    <div style={{ position: 'relative', height: '350px', borderRadius: '15px', overflow: 'hidden' }}>
+      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800" alt="Про нас" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+    </div>
+  </div>
+</section>
     </div>
   );
 }
