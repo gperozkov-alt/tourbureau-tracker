@@ -187,10 +187,10 @@ export default function HomePage() {
 
     {/* Відгуки */}
     {[
-      { name: 'Аня В.', tour: 'Золоті пляжі Балі', text: 'Балі перевершив всі очікування. Вже плануємо повернутись!', avatar: 'А', style: { bottom: '30px', left: '44%', width: '185px', rotate: '-1deg' } },
-      { name: 'Олена К.', tour: 'Магія Ісландії', text: 'Найкраща подорож у моєму житті! Північне сяйво — це неймовірно.', avatar: 'О', style: { bottom: '30px', left: '58%', width: '185px', rotate: '1.5deg' } },
-      { name: 'Максим Т.', tour: 'Сафарі в Кенії', text: 'Бачив лева на відстані 3 метрів! Все організовано бездоганно.', avatar: 'М', style: { bottom: '30px', left: '72%', width: '185px', rotate: '-1deg' } },
-      { name: 'Дмитро С.', tour: 'Альпійська казка', text: 'Швейцарія — це казка. Сир, шоколад і засніжені гори. Повертаюсь щороку!', avatar: 'Д', style: { bottom: '30px', right: '0px', width: '185px', rotate: '1deg' } },
+      { name: 'Аня В.', tour: 'Золоті пляжі Балі', text: 'Балі перевершив всі очікування. Вже плануємо повернутись!', avatar: 'А', style: { bottom: '30px', left: '43%', width: '13%', rotate: '-1deg' } },
+      { name: 'Олена К.', tour: 'Магія Ісландії', text: 'Найкраща подорож у моєму житті! Північне сяйво — це неймовірно.', avatar: 'О', style: { bottom: '30px', left: '57%', width: '13%', rotate: '1.5deg' } },
+      { name: 'Максим Т.', tour: 'Сафарі в Кенії', text: 'Бачив лева на відстані 3 метрів! Все організовано бездоганно.', avatar: 'М', style: { bottom: '30px', left: '71%', width: '13%', rotate: '-1deg' } },
+      { name: 'Дмитро С.', tour: 'Альпійська казка', text: 'Швейцарія — це казка. Сир, шоколад і засніжені гори. Повертаюсь щороку!', avatar: 'Д', style: { bottom: '30px', left: '85%', width: '13%', rotate: '1deg' } },
     ].map((review, i) => (
       <div key={i} style={{
         position: 'absolute',
