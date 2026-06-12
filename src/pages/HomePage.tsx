@@ -233,10 +233,7 @@ export default function HomePage() {
   </div>
 </section>
 
-    {/* Висота блоку */}
-    <div style={{ height: '350px' }} />
-  </div>
-</section>
-    </div>
+   </div>
   );
+}
 }
