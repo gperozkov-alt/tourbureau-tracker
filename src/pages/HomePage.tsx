@@ -48,7 +48,7 @@ const TOURS_STATIC = [
     price: 1800,
     duration: "6 днів",
     rating: "4.9",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Safari_in_Kenya.jpg/1280px-Safari_in_Kenya.jpg",
+    imageUrl: "https://cdn.pixabay.com/photo/2017/09/25/13/14/lion-2785184_1280.jpg",
     category: "Сафарі"
   }
 ];
