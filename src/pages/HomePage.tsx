@@ -100,9 +100,12 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundImage: 'url("https://tripmydream.cc/travelhub/blog/blog/15/46/block_1546.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.4)' }} />
-        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
+      <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+        <video autoPlay muted loop playsInline style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
+          <source src="https://videos.pexels.com/video-files/1562478/1562478-hd_1920_1080_30fps.mp4" type="video/mp4" />
+        </video>
+        <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1 }} />
+        <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
           <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '20px', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
             Відкрий світ разом з <span style={{ color: '#f97316', fontStyle: 'italic' }}>TourBureau</span>
           </h1>
