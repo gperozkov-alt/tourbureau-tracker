@@ -97,12 +97,12 @@ export default function HomePage() {
         <div style={{ display: 'flex', gap: '20px' }}>
           <a href="/" style={{ color: 'white', textDecoration: 'none' }}>Головна</a>
           <a href="#about" style={{ color: 'white', textDecoration: 'none' }}>Про нас</a>
-        </div>
+        </div><source src="https://drive.google.com/file/d/1hegrehsFN9subF5ryFJA_GvBFpOTLanj/view?usp=sharing" type="video/mp4" />
       </nav>
 
       <section style={{ position: 'relative', height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
         <video autoPlay muted loop playsInline style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
-          <source src="https://videos.pexels.com/video-files/1562478/1562478-hd_1920_1080_30fps.mp4" type="video/mp4" />
+          
         </video>
         <div style={{ position: 'absolute', inset: '0', backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1 }} />
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '800px', margin: 'auto', padding: '0 20px' }}>
