@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const TOURS_STATIC = [
   {
@@ -53,21 +53,7 @@ const TOURS_STATIC = [
   }
 ];
 
-const scrollStyles = `
-  .sa {
-    opacity: 0;
-    transform: translateY(35px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
-  }
-  .sa-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .sa-d1 { transition-delay: 0.05s; }
-  .sa-d2 { transition-delay: 0.15s; }
-  .sa-d3 { transition-delay: 0.25s; }
-  .sa-d4 { transition-delay: 0.35s; }
-  .sa-d5 { transition-delay: 0.45s; }
+const styles = `
   .tour-card {
     background: #262626;
     border: 1px solid rgba(255,255,255,0.05);
@@ -82,30 +68,9 @@ const scrollStyles = `
   }
 `;
 
-function useScrollAnimation() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('sa-visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const elements = document.querySelectorAll('.sa');
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-}
-
 export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('Усі');
-  const delays = ['sa-d1', 'sa-d2', 'sa-d3', 'sa-d4', 'sa-d5'];
-
-  useScrollAnimation();
 
   const categories = ['Усі', 'Гори', 'Пляж', 'Місто', 'Природа', 'Сафарі'];
 
@@ -118,7 +83,7 @@ export default function HomePage() {
 
   return (
     <div style={{ backgroundColor: '#171717', color: 'white', minHeight: '100vh', fontFamily: 'Geist, sans-serif' }}>
-      <style>{scrollStyles}</style>
+      <style>{styles}</style>
 
       <nav style={{ padding: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', maxWidth: '1200px', margin: '0 auto' }}>
         <a href="/" style={{ fontSize: '24px', fontWeight: 'bold', color: '#f97316', textDecoration: 'none' }}>TourBureau</a>
@@ -151,7 +116,7 @@ export default function HomePage() {
       </section>
 
       <section style={{ maxWidth: '1200px', margin: '60px auto', padding: '0 20px' }}>
-        <div className="sa" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px', flexWrap: 'wrap', gap: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px', flexWrap: 'wrap', gap: '20px' }}>
           <div>
             <h2 style={{ fontSize: '32px', margin: '0 0 10px 0', color: '#f97316' }}>Наші популярні напрямки</h2>
             <p style={{ color: '#aaa', margin: '0' }}>Обирайте тур, який відповідає вашому настрою та бюджету.</p>
@@ -170,13 +135,8 @@ export default function HomePage() {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '30px' }}>
-          {filteredTours.map((tour: any, index: number) => (
-            
-              <a key={tour.id}
-              href={`/tour/${tour.id}`}
-              className={`sa ${delays[index] || 'sa-d1'}`}
-              style={{ textDecoration: 'none', color: 'white' }}
-            >
+          {filteredTours.map((tour: any) => (
+            <a key={tour.id} href={`/tour/${tour.id}`} style={{ textDecoration: 'none', color: 'white' }}>
               <div className="tour-card">
                 <div style={{ position: 'relative', height: '200px', borderRadius: '15px', overflow: 'hidden', marginBottom: '15px' }}>
                   <img src={tour.imageUrl} alt={tour.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
